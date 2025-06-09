@@ -300,3 +300,47 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   // No need for preventDefault() since we want the normal flow
 });
 
+
+// In script.js
+async function loadQuotes() {
+  try {
+    const response = await fetch('http://localhost:3001/api/quotes');
+    const books = await response.json();
+    
+    const container = document.getElementById('threads-container');
+    container.innerHTML = books.map(book => `
+      <div class="thread-book">
+        <h3>${book.title}</h3>
+        <div class="thread-quotes">
+          <p>"${book.quote}"</p>
+        </div>
+      </div>
+    `).join('');
+  } catch (error) {
+    console.error("Failed to load quotes:", error);
+    // Fallback to local JSON
+    fetch('assets/books.json')
+      .then(res => res.json())
+      .then(fallbackBooks => {
+        // Render fallback data
+      });
+  }
+}
+
+async function loadGallery() {
+  try {
+    const response = await fetch('http://localhost:3001/api/gallery');
+    const images = await response.json();
+    
+    const grid = document.querySelector('.gallery-grid');
+    grid.innerHTML = images.map(img => `
+      <figure>
+        <img src="${img.imageUrl}" alt="${img.title}" loading="lazy">
+        <figcaption>${img.description}</figcaption>
+      </figure>
+    `).join('');
+  } catch (error) {
+    console.error("Failed to load gallery:", error);
+    // Fallback to local JSON/images
+  }
+}
