@@ -305,27 +305,40 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
 async function loadQuotes() {
   try {
     const response = await fetch('http://localhost:3001/api/quotes');
-    const books = await response.json();
+    if (!response.ok) throw new Error("Failed to fetch");
     
+    // const books = await response.json();
+    const books = [{
+  book: "Test Book",
+  author: "Test Author",
+  quote: "This is a test quote."
+}];
     const container = document.getElementById('threads-container');
+    
+    if (books.length === 0) {
+      container.innerHTML = "<p>No quotes found in database.</p>";
+      return;
+    }
+
     container.innerHTML = books.map(book => `
       <div class="thread-book">
-        <h3>${book.title}</h3>
+        <h3>${book.book} <small>by ${book.author}</small></h3>
         <div class="thread-quotes">
           <p>"${book.quote}"</p>
         </div>
       </div>
     `).join('');
+    
   } catch (error) {
-    console.error("Failed to load quotes:", error);
-    // Fallback to local JSON
-    fetch('assets/books.json')
-      .then(res => res.json())
-      .then(fallbackBooks => {
-        // Render fallback data
-      });
+    console.error("Error:", error);
+    document.getElementById('threads-container').innerHTML = `
+      <p class="error">Failed to load quotes. <button onclick="loadQuotes()">Retry</button></p>
+    `;
   }
 }
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', loadQuotes);
 
 async function loadGallery() {
   try {
