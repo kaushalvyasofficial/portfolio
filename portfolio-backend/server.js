@@ -73,3 +73,27 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+
+const booksCollection = db.collection("books");
+
+// Get all books with quotes
+app.get('/books', async (req, res) => {
+  try {
+    const books = await booksCollection.find({}).toArray();
+    res.json(books);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// Add a new book (with multiple quotes)
+app.post('/books', async (req, res) => {
+  try {
+    const book = req.body;  // expects the full book JSON structure
+    const result = await booksCollection.insertOne(book);
+    res.status(201).json(result);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
