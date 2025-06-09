@@ -3,7 +3,7 @@
 [![GitHub Pages](https://img.shields.io/badge/Website-Live-brightgreen)](https://kvyas.in)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Welcome to the source code of my personal portfolio website! Built with pure HTML, CSS, and JavaScript, deployed via GitHub Pages.
+Welcome to the source code of my personal portfolio website! Built with pure HTML, CSS, and JavaScript, deployed via GitHub Pages, lots of help by DeepSeek ;)
 
 ✨ **Live Demo**: [kvyas.in](https://kvyas.in)
 
