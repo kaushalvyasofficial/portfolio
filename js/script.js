@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add smooth scrolling for nav links
   setupSmoothScrolling();
 });
-
+/*
 function loadBookQuotes() {
   const threadsContainer = document.getElementById("threads-container");
   const loadingIndicator = document.createElement("div");
@@ -117,7 +117,7 @@ function loadBookQuotes() {
       console.error("Error loading books.json:", error);
     });
 }
-
+*/
 function setupSmoothScrolling() {
   // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
