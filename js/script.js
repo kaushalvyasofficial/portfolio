@@ -300,34 +300,3 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   // No need for preventDefault() since we want the normal flow
 });
 
-// Example: Display quotes inside a container with id="quotes-container"
-async function loadBooks() {
-  try {
-    const response = await fetch('http://localhost:3000/books');
-    const books = await response.json();
-
-    const container = document.getElementById('books-container');
-    container.innerHTML = '';
-
-    books.forEach(book => {
-      const bookDiv = document.createElement('div');
-      bookDiv.classList.add('book');
-
-      bookDiv.innerHTML = `
-        <h2>${book.title} (${book.year})</h2>
-        <h4>by ${book.author} | Category: ${book.category}</h4>
-        <img src="path/to/covers/${book.cover}" alt="${book.title} cover" style="width:150px;"/>
-        <h3>Quotes:</h3>
-        <ul>
-          ${book.quotes.map(q => `<li>"${q}"</li>`).join('')}
-        </ul>
-      `;
-
-      container.appendChild(bookDiv);
-    });
-  } catch (error) {
-    console.error('Error loading books:', error);
-  }
-}
-
-window.onload = loadBooks;
