@@ -299,3 +299,26 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   // FormSubmit will handle the redirect automatically
   // No need for preventDefault() since we want the normal flow
 });
+
+// Example: Display quotes inside a container with id="quotes-container"
+
+async function loadQuotes() {
+  try {
+    const response = await fetch('http://localhost:3000/quotes');
+    const quotes = await response.json();
+
+    const container = document.getElementById('quotes-container');
+    container.innerHTML = ''; // Clear existing content
+
+    quotes.forEach(q => {
+      const quoteElem = document.createElement('blockquote');
+      quoteElem.textContent = `"${q.quote}" — ${q.author || 'Unknown'}`;
+      container.appendChild(quoteElem);
+    });
+  } catch (error) {
+    console.error('Error loading quotes:', error);
+  }
+}
+
+// Call this on page load
+window.onload = loadQuotes;
