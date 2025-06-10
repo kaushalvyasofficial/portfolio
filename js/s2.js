@@ -181,7 +181,7 @@ async function loadQuotes() {
               <div class="book-meta">
                 ${book.publishYear ? `<span>📅 <br>${book.publishYear}</span>` : ''}
                 ${book.genre ? `<span>📚 <br>${book.genre}</span>` : ''}
-                ${book.dateOfCompletion ? `<span>✅ <br>Completed: ${formatDate(book.dateOfCompletion)}</span>` : ''}
+                ${book.dateOfCompletion ? `<span>✅ Completed: ${formatDate(book.dateOfCompletion)}</span>` : ''}
               </div>
             </div>
             <div class="preview-quote">
@@ -196,7 +196,7 @@ async function loadQuotes() {
             <div class="quotes-list">
               ${allQuotes.map((quote, qIndex) => `
                 <div class="quote-item">
-                  <div class="quote-number"> ${qIndex + 1}.</div>
+                  <div class="quote-number">${qIndex + 1}.</div>
                   <div class="quote-text">"${quote}"</div>
                 </div>
               `).join('')}

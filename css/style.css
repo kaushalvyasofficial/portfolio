@@ -437,7 +437,7 @@ input:focus, textarea:focus {
 }
 
 .quote-item::before {
-  content: '"';
+  content: '';
   font-size: 2rem;
   color: var(--primary);
   position: absolute;
