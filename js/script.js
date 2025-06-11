@@ -178,11 +178,21 @@ async function loadQuotes() {
             <div class="book-info">
               <h3 class="book-title">${book.bookName || book.book || 'Unknown Title'}</h3>
               <p class="book-author">by ${book.author || 'Unknown Author'}</p>
+              <br>
               <div class="book-meta">
-                ${book.publishYear ? `<span>📅 <br>${book.publishYear}</span>` : ''}
-                ${book.genre ? `<span>📚 <br>${book.genre}</span>` : ''}
-                ${book.dateOfCompletion ? `<span>✅ <br>Completed: ${formatDate(book.dateOfCompletion)}</span>` : ''}
-              </div>
+  ${book.publishYear ? `<span class="meta-item publishYear">
+    <div class="meta-icon">📅</div>
+    <div class="meta-text">${book.publishYear}</div>
+  </span>` : ''}
+  ${book.genre ? `<span class="meta-item genre">
+    <div class="meta-icon">📚</div>
+    <div class="meta-text">${book.genre}</div>
+  </span>` : ''}
+  ${book.dateOfCompletion ? `<span class="meta-item dateOfCompletion">
+    <div class="meta-icon">✅</div>
+    <div class="meta-text">Completed:<br>${formatDate(book.dateOfCompletion)}</div>
+  </span>` : ''}
+</div>
             </div>
             <div class="preview-quote">
               "${truncateText(firstQuote, 120)}"

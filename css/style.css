@@ -353,10 +353,34 @@ input:focus, textarea:focus {
 
 .book-meta {
   display: flex;
-  gap: 15px;
+  gap: 20px;
   font-size: 0.8rem;
   color: var(--text-gray);
+  align-items: flex-start;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  text-align:left;
+  min-width: 60px;
+}
+
+.meta-icon {
+  font-size: 1rem;
   margin-bottom: 15px;
+  line-height: 1;
+}
+
+.meta-text {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin-right: 100px;
+  margin-left: 0px;
+  white-space: wrap;
+  /* border: #0f5ddc solid; */
+  min-width: 90px;
 }
 
 .preview-quote {
