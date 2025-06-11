@@ -1,6 +1,7 @@
 [
   {
     "bookName": "Zero to One",
+    "coverImage": "./assets/images/book-covers/ZeroToOne.jpg",
     "author": "Peter Thiel",
     "publishYear": "2014",
     "genre": "Self-Help/ Entrepreneurship",
@@ -32,6 +33,7 @@
   },
   {
     "bookName": "Leaders Eat Last",
+    "coverImage": "./assets/images/book-covers/LeadersEatLast.jpg",
     "author": "Simon Sinek",
     "publishYear": "2017",
     "genre": "Self-Help/ Leadership",
@@ -61,6 +63,7 @@
   },
   {
     "bookName": "Why Am I An Atheist",
+    "coverImage": "./assets/images/book-covers/WhyIAmAnAtheist.jpg",
     "author": "Bhagat Singh",
     "publishYear": "1931",
     "genre": "Self-Help/ Philosophy",
@@ -95,6 +98,7 @@
   },
   {
     "bookName": "Chanakya Neeti",
+    "coverImage": "./assets/images/book-covers/ChanakyaNeeti.jpg",
     "author": "B.K. Chaturvedi",
     "publishYear": "2023",
     "genre": "Self-Help/ Management",
@@ -127,6 +131,7 @@
   },
   {
     "bookName": "I Hear You",
+    "coverImage": "./assets/images/book-covers/IHearYou.jpg",
     "author": "Nidhi Upadhyay",
     "publishYear": "2023",
     "genre": "Suspense/Medical Thriller/Sci-Fi",
@@ -140,7 +145,8 @@
     ]
   },
   {
-    "bookName": "Communication and Persuasion Skills from Swami Vivekanand",
+    "bookName": "Persuasion Skills from Swami Vivekanand",
+    "coverImage": "./assets/images/book-covers/PersuasionSkillsFromSwamiVivekanand.jpeg",
     "author": "A.R.K. Sharma",
     "publishYear": "2018",
     "genre": "Self-Help",
@@ -156,6 +162,7 @@
   },
   {
     "bookName": "It Starts With Us",
+    "coverImage": "./assets/images/book-covers/ItStartsWithUs.jpg",
     "author": "Colleen Hoover",
     "publishYear": "2022",
     "genre": "Romance/Adult Fiction",
@@ -178,6 +185,7 @@
   },
   {
     "bookName": "The Chad Mindset Vol 1 - 3",
+    "coverImage": "./assets/images/book-covers/TheChadMindsetVol1-3.png",
     "author": "Jacked Aecus",
     "publishYear": "2023",
     "genre": "Self-Help",
@@ -204,6 +212,7 @@
   },
   {
     "bookName": "The Midnight Library",
+    "coverImage": "./assets/images/book-covers/TheMidnightLibrary.jpg",
     "author": "Matt Haig",
     "publishYear": "2020",
     "genre": "Fantasy/Sci-Fi",
@@ -279,6 +288,7 @@
   },
   {
     "bookName": "Verity",
+    "coverImage": "./assets/images/book-covers/Verity.jpg",
     "author": "Colleen Hoover",
     "publishYear": "2018",
     "genre": "Thriller/Suspense/ Fiction",
@@ -293,6 +303,7 @@
   },
   {
     "bookName": "The Fault In Our Stars",
+    "coverImage": "./assets/images/book-covers/TheFaultInOurStars.jpg",
     "author": "John Green",
     "publishYear": "2012",
     "genre": "Romance/Adult Fiction",
@@ -327,6 +338,7 @@
   },
   {
     "bookName": "Animal Farm",
+    "coverImage": "./assets/images/book-covers/AnimalFarm.jpg",
     "author": "George Orwell",
     "publishYear": "1945",
     "genre": "Fable/Satire",
