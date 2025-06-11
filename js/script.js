@@ -119,7 +119,7 @@ function typeWriterName() {
 
   const nameElement = document.getElementById("animated-name");
   if (!nameElement) return; // Safety check
-  
+
   nameElement.innerHTML = "";
 
   let i = 0;
@@ -147,19 +147,19 @@ function typeWriterName() {
 async function loadQuotes() {
   const container = document.getElementById("threads-container");
   if (!container) return; // Safety check
-  
+
   try {
     // Show loading state
     container.innerHTML = '<div class="loading-quotes">Loading book quotes...</div>';
-    
+
     const response = await fetch("./assets/books.json");
     if (!response.ok) throw new Error("Failed to fetch quotes from books.json");
 
     const data = await response.json();
-    
+
     // Handle both single book object and array of books
     const books = Array.isArray(data) ? data : [data];
-    
+
     if (!books || books.length === 0) {
       container.innerHTML = "<p>No quotes found in books.json file.</p>";
       return;
@@ -167,11 +167,11 @@ async function loadQuotes() {
 
     // Generate book cards HTML
     container.innerHTML = books.map((book, index) => {
-      
+
       // Get quotes array
       const allQuotes = Array.isArray(book.quotes) ? book.quotes : "No quotes available";
       const firstQuote = allQuotes[0] || "No quotes available";
-    //   <span class="quote-count">${allQuotes.length} quote${allQuotes.length !== 1 ? 's' : ''}</span>
+      //   <span class="quote-count">${allQuotes.length} quote${allQuotes.length !== 1 ? 's' : ''}</span>
       return `
         <div class="book-card" data-book-index="${index}">
           <div class="book-preview" onclick="toggleBookQuotes(${index})">
@@ -195,7 +195,7 @@ async function loadQuotes() {
 </div>
             </div>
             <div class="preview-quote">
-              "${truncateText(firstQuote, 120)}"
+              ${truncateText(firstQuote, 120)}
             </div>
             <div class="expand-indicator">
               <span class="expand-arrow">▼</span>
@@ -207,7 +207,7 @@ async function loadQuotes() {
               ${allQuotes.map((quote, qIndex) => `
                 <div class="quote-item">
                   <div class="quote-number"> ${qIndex + 1}.</div>
-                  <div class="quote-text">"${quote}"</div>
+                  <div class="quote-text">${quote}</div>
                 </div>
               `).join('')}
             </div>
@@ -215,14 +215,14 @@ async function loadQuotes() {
         </div>
       `;
     }).join('');
-/* 
-<div class="quotes-container">
-            <div class="quotes-list">
-              ${allQuotes.map(quote => `
-                <div class="quote-item">
-                  <div class="quote-text">${quote}</div>
-                </div>
-*/
+    /* 
+    <div class="quotes-container">
+                <div class="quotes-list">
+                  ${allQuotes.map(quote => `
+                    <div class="quote-item">
+                      <div class="quote-text">${quote}</div>
+                    </div>
+    */
   } catch (error) {
     console.error("Error loading quotes:", error);
     container.innerHTML = `
@@ -238,10 +238,10 @@ async function loadQuotes() {
 function toggleBookQuotes(bookIndex) {
   const bookCard = document.querySelector(`[data-book-index="${bookIndex}"]`);
   if (!bookCard) return;
-  
+
   const isExpanded = bookCard.classList.contains('expanded');
   const arrow = bookCard.querySelector('.expand-arrow');
-  
+
   // Close all other expanded cards first
   document.querySelectorAll('.book-card.expanded').forEach(card => {
     if (card !== bookCard) {
@@ -250,7 +250,7 @@ function toggleBookQuotes(bookIndex) {
       if (otherArrow) otherArrow.textContent = '▼';
     }
   });
-  
+
   // Toggle current card
   if (isExpanded) {
     bookCard.classList.remove('expanded');
@@ -258,7 +258,7 @@ function toggleBookQuotes(bookIndex) {
   } else {
     bookCard.classList.add('expanded');
     if (arrow) arrow.textContent = '▲';
-    
+
     // Smooth scroll to the expanded card after a brief delay
     setTimeout(() => {
       bookCard.scrollIntoView({
@@ -273,21 +273,21 @@ function toggleBookQuotes(bookIndex) {
 function truncateText(text, maxLength) {
   if (!text) return '';
   if (text.length <= maxLength) return text;
-  
+
   // Find the last space before maxLength to avoid cutting words
   const truncated = text.substr(0, maxLength);
   const lastSpace = truncated.lastIndexOf(' ');
-  
+
   return (lastSpace > 0 ? truncated.substr(0, lastSpace) : truncated) + '...';
 }
 
 function formatDate(dateString) {
   try {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'short', 
-      day: 'numeric' 
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
     });
   } catch (error) {
     return dateString; // Return original if parsing fails
@@ -295,7 +295,7 @@ function formatDate(dateString) {
 }
 
 // ==================== KEYBOARD NAVIGATION ====================
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', function (e) {
   // ESC key closes all expanded cards
   if (e.key === 'Escape') {
     document.querySelectorAll('.book-card.expanded').forEach(card => {
