@@ -292,21 +292,6 @@
     ]
   },
   {
-    "bookName": "Animal Farm",
-    "author": "George Orwell",
-    "publishYear": "1945",
-    "genre": "Fable/Satire",
-    "dateOfCompletion": "2024-01-03",
-    "quotes": [
-      "All Animals Are Equal But Some Animals Are More Equal Than Others.",
-      "Men can only be happy when they do not assume that the object of life is happiness.",
-      "If liberty means anything at all, it means the right to tell people what they do not want to hear.",
-      "Serious sport has nothing to do with fair play. It is bound up with hatred, jealousy, boastfulness, disregard of all rules and sadistic pleasure in witnessing violence. In other words: it is war minus the shooting.",
-      "Speaking the Truth in times of universal deceit is a revolutionary act.",
-      "In practice, 'he who is not with me is against me.'"
-    ]
-  },
-  {
     "bookName": "The Fault In Our Stars",
     "author": "John Green",
     "publishYear": "2012",
@@ -338,6 +323,21 @@
       "'Pain is like fabric: The stronger it is, the more it's worth.'",
       "The real heroes anyway aren't the people doing things; the real heroes are the people NOTICING things, paying attention. The guy who invented the smallpox vaccine didn't actually invent anything. He just noticed that people with cowpox didn't get smallpox.",
       "\"There is no try,\" I said. \"There is only do.\""
+    ]
+  },
+  {
+    "bookName": "Animal Farm",
+    "author": "George Orwell",
+    "publishYear": "1945",
+    "genre": "Fable/Satire",
+    "dateOfCompletion": "2024-01-03",
+    "quotes": [
+      "All Animals Are Equal But Some Animals Are More Equal Than Others.",
+      "Men can only be happy when they do not assume that the object of life is happiness.",
+      "If liberty means anything at all, it means the right to tell people what they do not want to hear.",
+      "Serious sport has nothing to do with fair play. It is bound up with hatred, jealousy, boastfulness, disregard of all rules and sadistic pleasure in witnessing violence. In other words: it is war minus the shooting.",
+      "Speaking the Truth in times of universal deceit is a revolutionary act.",
+      "In practice, 'he who is not with me is against me.'"
     ]
   }
 ]
