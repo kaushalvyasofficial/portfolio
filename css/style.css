@@ -607,7 +607,7 @@ input:focus, textarea:focus {
 }
 
 /* ========== TYPEWRITER EFFECT ========== */
-.typewriter { position: relative; }
+.typewriter { position: absolute; }
 .typewriter-cursor {
   position: absolute;
   left: 0;
@@ -616,7 +616,7 @@ input:focus, textarea:focus {
   width: 2px;
   height: 1.2em;
   background: var(--primary);
-  animation: blink 1s 3;
+  animation: blink 3s infinite;
 }
 .typewriter-cursor.done { animation: none; }
 
