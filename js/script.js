@@ -1,67 +1,9 @@
-// ==================== NAVBAR FUNCTIONALITY ====================
-// Note: No navbar found in HTML, but keeping scroll functionality for future use
-let lastScrollTop = 0;
-const navbar = document.querySelector(".navbar");
-const scrollThreshold = 100; // Only hide navbar after scrolling this many pixels
-
-window.addEventListener("scroll", () => {
-    const currentScroll = window.scrollY;
-
-    // Show/hide navbar based on scroll direction
-    if (currentScroll > lastScrollTop && currentScroll > scrollThreshold) {
-        navbar.style.top = "-70px";
-    } else {
-        navbar.style.top = "0";
-    }
-
-    // Add/remove background blur
-    if (currentScroll > 50) {
-        navbar.style.backgroundColor = "rgba(31, 31, 31, 0.95)";
-        navbar.style.backdropFilter = "blur(5px)";
-    } else {
-        navbar.style.backgroundColor = "var(--bg-light)";
-        navbar.style.backdropFilter = "none";
-    }
-
-    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-});
-
 // ==================== ON PAGE LOAD ====================
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("current-year").textContent = new Date().getFullYear(); // Update footer year
     loadQuotes();       // Load quotes from books.json
     typeWriterName();   // Start name animation
-    setupSmoothScrolling(); // Setup nav link scroll
 });
-
-// ==================== SMOOTH SCROLLING ====================
-function setupSmoothScrolling() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-
-            const targetId = this.getAttribute("href");
-            if (targetId === "#") return;
-
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const navbarHeight = navbar.offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: "smooth"
-                });
-
-                if (history.pushState) {
-                    history.pushState(null, null, targetId);
-                } else {
-                    window.location.hash = targetId;
-                }
-            }
-        });
-    });
-}
 
 // ==================== CONTACT FORM HANDLER ====================
 document.getElementById("contact-form").addEventListener("submit", async function (e) {
@@ -192,16 +134,17 @@ async function loadQuotes() {
             <div class="meta-label">Published On</div>
             <div class="meta-value">${book.publishYear}</div>
           </span>` : ''}
-          ${book.genre ? `<span class="meta-item">
-            <div class="meta-icon">📚</div>
-            <div class="meta-label">Genre</div>
-            <div class="meta-value">${book.genre}</div>
-          </span>` : ''}
           ${book.dateOfCompletion ? `<span class="meta-item">
             <div class="meta-icon">✅</div>
             <div class="meta-label">Completed on</div>
             <div class="meta-value">${formatDate(book.dateOfCompletion)}</div>
           </span>` : ''}
+          ${book.genre ? `<span class="meta-item">
+            <div class="meta-icon">📚</div>
+            <div class="meta-label">Genre</div>
+            <div class="meta-value">${book.genre}</div>
+          </span>` : ''}
+          
         </div>
       </div>
       <div class="expand-indicator">
@@ -257,14 +200,6 @@ function toggleBookQuotes(bookIndex) {
     } else {
         bookCard.classList.add('expanded');
         if (arrow) arrow.textContent = '▲';
-
-        // Smooth scroll to the expanded card after a brief delay
-        setTimeout(() => {
-            bookCard.scrollIntoView({
-                behavior: 'smooth',
-                block: 'nearest'
-            });
-        }, 300);
     }
 }
 
@@ -304,12 +239,3 @@ document.addEventListener('keydown', function (e) {
         });
     }
 });
-
-// ==================== SCROLL TO TOP FUNCTIONALITY ====================
-// Add a smooth scroll to top when clicking on the logo/name (if you add one later)
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-}

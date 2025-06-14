@@ -173,47 +173,54 @@ async function loadQuotes() {
             const firstQuote = allQuotes[0] || "No quotes available";
             //   <span class="quote-count">${allQuotes.length} quote${allQuotes.length !== 1 ? 's' : ''}</span>
             return `
-        <div class="book-card" data-book-index="${index}">
-          <div class="book-preview" onclick="toggleBookQuotes(${index})">
-            <div class="book-info">
-              <h3 class="book-title">${book.bookName || book.book || 'Unknown Title'}</h3>
-              <p class="book-author">by ${book.author || 'Unknown Author'}</p>
-              <br>
-              <div class="book-meta">
-  ${book.publishYear ? `<span class="meta-item publishYear">
-    <div class="meta-icon">📅</div>
-    <div class="meta-text">${book.publishYear}</div>
-  </span>` : ''}
-  ${book.genre ? `<span class="meta-item genre">
-    <div class="meta-icon">📚</div>
-    <div class="meta-text">${book.genre}</div>
-  </span>` : ''}
-  ${book.dateOfCompletion ? `<span class="meta-item dateOfCompletion">
-    <div class="meta-icon">✅</div>
-    <div class="meta-text">Completed:<br>${formatDate(book.dateOfCompletion)}</div>
-  </span>` : ''}
-            </div>
-            </div>
-            <div class="preview-quote">
-              ${truncateText(firstQuote, 120)}
-            </div>
-            <div class="expand-indicator">
-              <span class="expand-arrow">▼</span>
-            </div>
-          </div>
-          
-          <div class="quotes-container">
-            <div class="quotes-list">
-              ${allQuotes.map((quote, qIndex) => `
-                <div class="quote-item">
-                  <div class="quote-number"> ${qIndex + 1}.</div>
-                  <div class="quote-text">${quote}</div>
-                </div>
-              `).join('')}
-            </div>
-          </div>
+  <div class="book-card" data-book-index="${index}">
+    <div class="book-preview" onclick="toggleBookQuotes(${index})">
+      <div class="book-cover">
+        <img src="${book.coverImage || './assets/placeholder-book.jpg'}" alt="${book.bookName || book.book || 'Unknown Title'}" class="book-image">
+      </div>
+      <div class="book-content">
+        <div class="book-header">
+          <h3 class="book-title">${book.bookName || book.book || 'Unknown Title'}</h3>
+          <p class="book-author">By ${book.author || 'Unknown Author'}</p>
         </div>
-      `;
+        <div class="featured-quote">
+          ${truncateText(firstQuote, 120)}
+        </div>
+        <div class="book-meta">
+          ${book.publishYear ? `<span class="meta-item">
+            <div class="meta-icon">📅</div>
+            <div class="meta-label">Published On</div>
+            <div class="meta-value">${book.publishYear}</div>
+          </span>` : ''}
+          ${book.genre ? `<span class="meta-item">
+            <div class="meta-icon">📚</div>
+            <div class="meta-label">Genre</div>
+            <div class="meta-value">${book.genre}</div>
+          </span>` : ''}
+          ${book.dateOfCompletion ? `<span class="meta-item">
+            <div class="meta-icon">✅</div>
+            <div class="meta-label">Completed on</div>
+            <div class="meta-value">${formatDate(book.dateOfCompletion)}</div>
+          </span>` : ''}
+        </div>
+      </div>
+      <div class="expand-indicator">
+        <span class="expand-arrow">▼</span>
+      </div>
+    </div>
+    
+    <div class="quotes-container">
+      <div class="quotes-list">
+        ${allQuotes.map((quote, qIndex) => `
+          <div class="quote-item">
+            <div class="quote-number">${qIndex + 1}.</div>
+            <div class="quote-text">${quote}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  </div>
+`;
         }).join('');
     } catch (error) {
         console.error("Error loading quotes:", error);
