@@ -239,3 +239,112 @@ document.addEventListener('keydown', function (e) {
         });
     }
 });
+
+// ==================== LOAD ACHIEVEMENTS ====================
+async function loadAchievements() {
+    const container = document.getElementById("achievements-container");
+    if (!container) return;
+
+    try {
+        // Show loading state
+        container.innerHTML = '<div class="timeline"><div class="loading-achievements">Loading achievements...</div></div>';
+
+        const response = await fetch("./assets/achievements.json");
+        if (!response.ok) throw new Error("Failed to fetch achievements");
+
+        const achievements = await response.json();
+
+        if (!achievements || achievements.length === 0) {
+            container.innerHTML = '<div class="error-achievements">No achievements found.</div>';
+            return;
+        }
+
+        // Sort achievements by date (newest first)
+        const sortedAchievements = achievements.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        // Generate timeline HTML
+        const timelineHTML = `
+            <div class="timeline">
+                ${sortedAchievements.map((achievement, index) => `
+                    <div class="achievement-item" data-aos="fade-up" data-aos-delay="${index * 100}">
+                        <div class="achievement-content">
+                            <div class="achievement-header">
+                                <div class="achievement-icon">${achievement.icon || '🏆'}</div>
+                                <div class="achievement-title-section">
+                                    <h3 class="achievement-title">${achievement.title}</h3>
+                                    <p class="achievement-date">${formatAchievementDate(achievement.date)}</p>
+                                </div>
+                                <div class="achievement-rating">
+                                    ${generateStarRating(achievement.rating)}
+                                </div>
+                            </div>
+                            
+                            <p class="achievement-description">${achievement.description}</p>
+                            
+                            <div class="achievement-footer">
+                                <span class="achievement-category">${achievement.category || 'Achievement'}</span>
+                                ${achievement.proofLink && achievement.proofLink !== '#' ? `
+                                    <a href="${achievement.proofLink}" target="_blank" rel="noopener noreferrer" class="achievement-proof">
+                                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                            <polyline points="15,3 21,3 21,9"/>
+                                            <line x1="10" y1="14" x2="21" y2="3"/>
+                                        </svg>
+                                        View Proof
+                                    </a>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+
+        container.innerHTML = timelineHTML;
+
+    } catch (error) {
+        console.error("Error loading achievements:", error);
+        container.innerHTML = `
+            <div class="error-achievements">
+                <p>❌ Failed to load achievements. Please check if achievements.json exists in the assets folder.</p>
+                <button onclick="loadAchievements()" class="btn" style="margin-top: 15px;">Retry</button>
+            </div>
+        `;
+    }
+}
+
+// ==================== UTILITY FUNCTIONS FOR ACHIEVEMENTS ====================
+function generateStarRating(rating) {
+    const maxStars = 5;
+    let starsHTML = '';
+    
+    for (let i = 1; i <= maxStars; i++) {
+        if (i <= rating) {
+            starsHTML += '<span class="star">★</span>';
+        } else {
+            starsHTML += '<span class="star empty">★</span>';
+        }
+    }
+    
+    return starsHTML;
+}
+
+function formatAchievementDate(dateString) {
+    try {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    } catch (error) {
+        return dateString;
+    }
+}
+
+// Add achievements loading to the main DOMContentLoaded event
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+    loadQuotes();
+    loadAchievements(); // Add this line
+});
