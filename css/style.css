@@ -978,6 +978,7 @@ footer {
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: var(--transition);
   position: relative;
+  
 }
 
 .achievement-content:hover {
@@ -998,6 +999,7 @@ footer {
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   transform: translateY(-50%);
+  white-space: pre-line;
 }
 
 .achievement-item:nth-child(even) .achievement-content::after {
@@ -1011,6 +1013,7 @@ footer {
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   transform: translateY(-50%);
+  white-space: pre-line;
 }
 
 /* Timeline dots */
@@ -1028,6 +1031,7 @@ footer {
   z-index: 2;
   box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.3);
   transition: var(--transition);
+  white-space: pre-line;
 }
 
 .achievement-item:hover::before {
@@ -1094,6 +1098,7 @@ footer {
   line-height: 1.6;
   color: var(--text-light);
   margin-bottom: 15px;
+  white-space: pre-line;
 }
 
 .achievement-footer {

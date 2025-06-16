@@ -1,20 +1,47 @@
 [
   {
     "title": "Graph-e-thon 2.0 - Finalist",
-    "date": "2024-02-20",
-    "description": "Developed an AI-powered course generator with dynamic quiz creation, flashcards, and smart data visualization capabilities.",
+    "date": "2025-04-23",
+    "description": "",
     "proofLink": "#",
-    "rating": 4,
+    "rating": 3,
     "category": "Hackathon",
-    "icon": "🎯"
+    "icon": "🏆"
   },
   {
+    "title": "Finance Among Us",
+    "date": "2025-03-31",
+    "description": "",
+    "proofLink": "",
+    "rating": 4,
+    "category": "Competition",
+    "icon": "🎯"
+  },
+    {
     "title": "Smart India Hackathon 2024 - Winner",
     "date": "2024-12-12",
     "description": "Built a comprehensive software solution for ranking institutional departments based on achievements and research metrics with role-based access control and advanced analytics.",
     "proofLink": "https://pi-ex.vercel.app/",
     "rating": 5,
-    "category": "Competition",
+    "category": "Hackathon",
     "icon": "🏆"
+  },
+  {
+    "title": "CLASS 12 ISC BOARD Examinations",
+    "date": "2021-07-24",
+    "description": "Average Marks: 93%\n\nMaths: 100%\nComputer Applications: 95%\nScience: 84%\nSocial Studies: 90%\nEnglish: 84%\nHindi: 94%",
+    "proofLink": "",
+    "rating": 4,
+    "category": "Test Score",
+    "icon": "🎓"
+  },
+    {
+    "title": "CLASS 10 ICSE BOARD Examinations",
+    "date": "2019-05-07",
+    "description": "Average Marks: 93%\n\nMaths: 100%\nComputer Applications: 95%\nScience: 84%\nSocial Studies: 90%\nEnglish: 84%\nHindi: 94%",
+    "proofLink": "",
+    "rating": 4,
+    "category": "Test Score",
+    "icon": "🎓"
   }
 ]
