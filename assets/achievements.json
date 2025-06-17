@@ -90,37 +90,37 @@
         "icon": "🎯"
     },
     {
-        "title": "Joint Entrance Examination - Advanced",
+        "title": "Joint Entrance Examination - Advanced (AIR: 17472)",
         "date": "2022-09-11",
-        "description": "All India Rank: 17472",
+        "description": "",
         "proofLink": "https://drive.google.com/file/d/1SaOsrBPUZgMgcGbl0IrCCbNcTpzm5kNe/",
         "rating": 4,
         "category": "Entrance Exam",
         "icon": "✒️"
     },
     {
-        "title": "Joint Entrance Examination - Mains",
+        "title": "Joint Entrance Examination - Mains (AIR 31677)",
         "date": "2022-08-07",
-        "description": "",
+        "description": "Total: 96.4859749\n\nPhysics: 93.1922552\nChemistry: 90.8526747\nMathematics: 99.1498076",
         "proofLink": "https://drive.google.com/file/d/11XnlDNFMt82pa4dZQ2ebUolqQ_m7Bo7P/",
         "rating": 4,
         "category": "ENTRANCE EXAM",
         "icon": "✒️"
     },
     {
-        "title": "Technical Entry Scheme - 46th Course Recommended (AIR 58)",
+        "title": "Technical Entry Scheme - 46th Course (AIR 58)",
         "date": "2022-01-13",
-        "description": "",
-        "proofLink": "",
+        "description": "SSB RECOMMENDED for the INDIAN ARMY from 19 Services Selection Board Allahabad.",
+        "proofLink": "https://drive.google.com/file/d/1Lw9rb_hoLevhyWDW5vClkPFWYkeZOW2Q/",
         "rating": 5,
         "category": "ENTRANCE EXAM",
         "icon": "🪖"
     },
     {
-        "title": "National Defence Academy - 147th Course Recommended (AIR 52)",
+        "title": "National Defence Academy - 147th Course (AIR 52)",
         "date": "2021-10-15",
-        "description": "",
-        "proofLink": "",
+        "description": "SSB RECOMMENDED for the INDIAN AIR FORCE (FLYING BRANCH - CPSS Passed) from 04 Air Force Selection Board Varanasi.\n\nTotal: 893 Marks\n\nWRITTEN: 512/900\nSSB: 384/900",
+        "proofLink": "https://drive.google.com/file/d/1bj9Fi2cjGmRFB6AJQTnM2Z2R8571tQTS/",
         "rating": 5,
         "category": "ENTRANCE EXAM",
         "icon": "✈️"
@@ -128,8 +128,8 @@
     {
         "title": "Scholastic Aptitude Test (SAT)",
         "date": "2021-10-02",
-        "description": "",
-        "proofLink": "",
+        "description": "Total: 1350/1600\n\nMath: 780/800\nEnglish: 570/800",
+        "proofLink": "https://drive.google.com/file/d/1sYkvkqcuaqWdS4QX7-gDxN5POfDNfbCK/",
         "rating": 4,
         "category": "ENTRANCE EXAM",
         "icon": "✒️"
@@ -137,8 +137,8 @@
     {
         "title": "Test Of English as a Foreign Language (TOEFL)",
         "date": "2021-09-05",
-        "description": "",
-        "proofLink": "",
+        "description": "Total: 93/120\n\nListening: 25/30\nReading: 24/30\nSpeaking: 23/30\nWriting: 21/30",
+        "proofLink": "https://drive.google.com/file/d/12Xg7qemM-tIsacAbCRrA51nwgnFy1F8a/",
         "rating": 4,
         "category": "ENTRANCE EXAM",
         "icon": "✒️"
@@ -146,8 +146,8 @@
     {
         "title": "CLASS 12 ISC BOARD Examinations",
         "date": "2021-07-24",
-        "description": "Average Marks: 93%\n\nMaths: 100%\nComputer Applications: 95%\nScience: 84%\nSocial Studies: 90%\nEnglish: 84%\nHindi: 94%",
-        "proofLink": "",
+        "description": "Average Marks: 85%\n\nMaths: 89/100\nComputer Science: 93/100\nPhysics: 82/100\nChemistry: 74/100\nEnglish: 88/100",
+        "proofLink": "https://drive.google.com/file/d/1W1EcOi47Ab2KxGthjHfwjdsSToLfjOi_/",
         "rating": 4,
         "category": "Test Score",
         "icon": "🎓"
@@ -162,10 +162,10 @@
         "icon": "✒️"
     },
     {
-        "title": "National Science Talent Search Examination",
+        "title": "National Science Talent Search Examination (AIR 75)",
         "date": "2021-01-31",
-        "description": "",
-        "proofLink": "",
+        "description": "Critical Thinking: AIR 1\nMathematics: AIR 97\nChemistry: AIR 103\nPhysics: AIR 121",
+        "proofLink": "https://drive.google.com/file/d/1vN4K4WlRDFA_4DRnASwLhOAEwRukpFvU/",
         "rating": 4,
         "category": "Test Score",
         "icon": "🎓"
@@ -173,8 +173,8 @@
     {
         "title": "CLASS 10 ICSE BOARD Examinations",
         "date": "2019-05-07",
-        "description": "Average Marks: 93%\n\nMaths: 100%\nComputer Applications: 95%\nScience: 84%\nSocial Studies: 90%\nEnglish: 84%\nHindi: 94%",
-        "proofLink": "",
+        "description": "Average Marks: 93%\n\nMaths: 100/100\nComputer Applications: 95/100\nScience: 84/100\nSocial Studies: 90/100\nEnglish: 84/100\nHindi: 94/100",
+        "proofLink": "https://drive.google.com/file/d/1HUimJUEjh9209rTV1WkqkQsVDI4KoSlk/",
         "rating": 4,
         "category": "Test Score",
         "icon": "🎓"
