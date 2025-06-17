@@ -27,6 +27,15 @@
         "icon": "🏆"
     },
     {
+        "title": "Joint Entrance Examination - Advanced",
+        "date": "2022-09-11",
+        "description": "",
+        "proofLink": "",
+        "rating": 4,
+        "category": "ENTRANCE EXAM",
+        "icon": "✒️"
+    },
+    {
         "title": "Technical Entry Scheme - 46th Course Recommended (AIR 58)",
         "date": "2022-01-13",
         "description": "",
@@ -44,7 +53,24 @@
         "category": "ENTRANCE EXAM",
         "icon": "✈️"
     },
-    
+    {
+        "title": "Scholastic Aptitude Test (SAT)",
+        "date": "2021-10-02",
+        "description": "",
+        "proofLink": "",
+        "rating": 4,
+        "category": "ENTRANCE EXAM",
+        "icon": "✒️"
+    },
+    {
+        "title": "Test Of English as a Foreign Language (TOEFL)",
+        "date": "2021-09-05",
+        "description": "",
+        "proofLink": "",
+        "rating": 4,
+        "category": "ENTRANCE EXAM",
+        "icon": "✒️"
+    },
     {
         "title": "CLASS 12 ISC BOARD Examinations",
         "date": "2021-07-24",
@@ -53,6 +79,24 @@
         "rating": 4,
         "category": "Test Score",
         "icon": "🎓"
+    },
+    {
+        "title": "Pearson Undergraduate Entrance Exam",
+        "date": "2021-07-23",
+        "description": "",
+        "proofLink": "",
+        "rating": 4,
+        "category": "ENTRANCE EXAM",
+        "icon": "✒️"
+    },
+    {
+        "title": "National Science Talent Search Examination",
+        "date": "2021-01-31",
+        "description": "",
+        "proofLink": "",
+        "rating": 4,
+        "category": "Competition",
+        "icon": "🎯"
     },
     {
         "title": "CLASS 10 ICSE BOARD Examinations",
