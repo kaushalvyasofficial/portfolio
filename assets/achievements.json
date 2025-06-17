@@ -1,6 +1,6 @@
 [
     {
-        "title": "Graph-e-thon 2.0 - Finalist",
+        "title": "Graph-e-thon 2.0 - Graphic-Era Deemed University",
         "date": "2025-04-23",
         "description": "",
         "proofLink": "#",
@@ -9,16 +9,25 @@
         "icon": "🏆"
     },
     {
-        "title": "Finance Among Us",
+        "title": "Finance Among Us - Plaksha University",
         "date": "2025-03-31",
         "description": "",
         "proofLink": "",
-        "rating": 4,
+        "rating": 3,
         "category": "Competition",
         "icon": "🎯"
     },
     {
-        "title": "Smart India Hackathon 2024 - Winner",
+        "title": "Reverse 8.0 AIT Finalist",
+        "date": "2025-03-31",
+        "description": "",
+        "proofLink": "",
+        "rating": 3,
+        "category": "Competition",
+        "icon": "🎯"
+    },
+    {
+        "title": "Smart India Hackathon Winner",
         "date": "2024-12-12",
         "description": "Built a comprehensive software solution for ranking institutional departments based on achievements and research metrics with role-based access control and advanced analytics.",
         "proofLink": "https://pi-ex.vercel.app/",
@@ -27,10 +36,73 @@
         "icon": "🏆"
     },
     {
-        "title": "Joint Entrance Examination - Advanced",
-        "date": "2022-09-11",
+        "title": "TechElevate X AIT",
+        "date": "2023-09-20",
         "description": "",
         "proofLink": "",
+        "rating": 3,
+        "category": "Competition",
+        "icon": "🎯"
+    },
+    {
+        "title": "Reliance Foundation Scholarship",
+        "date": "2023-05-24",
+        "description": "",
+        "proofLink": "",
+        "rating": 5,
+        "category": "Scholarship",
+        "icon": "🎓"
+    },
+    {
+        "title": "Startup Saga",
+        "date": "2023-04-16",
+        "description": "",
+        "proofLink": "",
+        "rating": 3,
+        "category": "Competition",
+        "icon": "🎯"
+    },
+    {
+        "title": "Abdul Kalam Quiz",
+        "date": "2023-03-18",
+        "description": "",
+        "proofLink": "",
+        "rating": 3,
+        "category": "Competition",
+        "icon": "🎯"
+    },
+    {
+        "title": "Placement Apti Final Round - Technical Aakriti",
+        "date": "2023-02-17",
+        "description": "",
+        "proofLink": "",
+        "rating": 3,
+        "category": "Competition",
+        "icon": "🎯"
+    },
+    {
+        "title": "Impression 3.0",
+        "date": "2022-11-07",
+        "description": "",
+        "proofLink": "",
+        "rating": 3,
+        "category": "Competition",
+        "icon": "🎯"
+    },
+    {
+        "title": "Joint Entrance Examination - Advanced",
+        "date": "2022-09-11",
+        "description": "All India Rank: 17472",
+        "proofLink": "https://drive.google.com/file/d/1SaOsrBPUZgMgcGbl0IrCCbNcTpzm5kNe/",
+        "rating": 4,
+        "category": "Entrance Exam",
+        "icon": "✒️"
+    },
+    {
+        "title": "Joint Entrance Examination - Mains",
+        "date": "2022-08-07",
+        "description": "",
+        "proofLink": "https://drive.google.com/file/d/11XnlDNFMt82pa4dZQ2ebUolqQ_m7Bo7P/",
         "rating": 4,
         "category": "ENTRANCE EXAM",
         "icon": "✒️"
@@ -95,8 +167,8 @@
         "description": "",
         "proofLink": "",
         "rating": 4,
-        "category": "Competition",
-        "icon": "🎯"
+        "category": "Test Score",
+        "icon": "🎓"
     },
     {
         "title": "CLASS 10 ICSE BOARD Examinations",
