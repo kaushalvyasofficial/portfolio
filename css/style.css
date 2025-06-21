@@ -1237,3 +1237,129 @@ footer {
     font-size: 0.9rem;
   }
 }
+
+
+/* Experience Section Styles */
+.experience-timeline {
+  position: relative;
+  padding: 20px 0;
+}
+
+.experience-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background-color: var(--primary);
+}
+
+.experience-item {
+  position: relative;
+  margin-bottom: 30px;
+  padding-left: 30px;
+}
+
+.experience-item::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 1px;
+  width: 15px;
+  height: 15px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.experience-header h3 {
+  font-size: 1.2rem;
+  color: var(--text-lighter);
+  margin: 0;
+}
+
+.experience-date {
+  font-size: 0.9rem;
+  color: var(--text-gray);
+}
+
+.experience-description {
+  margin-bottom: 10px;
+}
+
+.experience-contributions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.experience-contributions li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.experience-contributions li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .experience-timeline::before {
+    left: 10px;
+  }
+  
+  .experience-item {
+    padding-left: 40px;
+  }
+  
+  .experience-item::before {
+    left: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .experience-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .experience-date {
+    font-size: 0.8rem;
+  }
+}
+
+.skills-acquired {
+  margin-top: 10px;
+}
+
+.skills-acquired h4 {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.skills-acquired ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skills-acquired li {
+  display: inline-block;
+  background-color: var(--bg-light);
+  padding: 5px 10px;
+  border-radius: var(--border-radius);
+  margin: 5px;
+  font-size: 0.9rem;
+}
