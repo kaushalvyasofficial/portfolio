@@ -317,7 +317,7 @@ async function loadAchievements() {
 function generateStarRating(rating) {
     const maxStars = 5;
     let starsHTML = '';
-    
+
     for (let i = 1; i <= maxStars; i++) {
         if (i <= rating) {
             starsHTML += '<span class="star">★</span>';
@@ -325,7 +325,7 @@ function generateStarRating(rating) {
             starsHTML += '<span class="star empty">★</span>';
         }
     }
-    
+
     return starsHTML;
 }
 
