@@ -1286,7 +1286,7 @@ footer {
 
 .experience-date {
   font-size: 0.9rem;
-  color: var(--text-gray);
+  color: var(--text-light);
 }
 
 .experience-description {
