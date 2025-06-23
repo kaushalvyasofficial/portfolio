@@ -1,5 +1,48 @@
 [
   {
+    "bookName": "Things No One Taught Us About Love",
+    "coverImage": "./assets/images/book-covers/ThingsNoOneTaughtUsAboutLove.jpg",
+    "author": "Vex King",
+    "publishYear": "2024",
+    "genre": "Self-Help",
+    "dateOfCompletion": "2025-06-24",
+    "quotes": [
+      "We look for someone to complete us because we've decided we're incomplete.",
+      "You are worthy of love that is pure, inspiring and wholesome: the kind of love that unlocks your capacity to love yourself more deeply, especially in those testing moments when your mind vigorously swims against the tides of pain.",
+      "A relationship can help you cultivate more love, but ultimately - like a mirror - it will only amplify the abundance or lack of love you carry towards yourself.",
+      "Independence and wholeness attract something far more profound than co-dependence.",
+      "The right partner will not complete you. You are already whole. The right partner will expand you. They will catalyze your growth and elevate your consciousness.",
+      "Love is not scientific. It's not mathematical. It's not exactly rational. And yet it's so simple that even a baby knows what it is, at least on some primal level.",
+      "Love is the easiest thing we'll ever do, be, experience, give and receive.",
+      "You can love anyone, but that doesn't mean you should be in a relationship with them. Compatibility, respect, trust, reciprocity, vulnerability, intimacy, communication, understanding and honesty are needed. \n\nEffort is a must.",
+      "Passion burns hot, then fizzles like an Alka-Seltzer in water. But true love? That can simmer on the back  burner forever.",
+      "If we choose to move on, it doesn't mean we never experienced love, or that we will never feel love for that person again, it just means we no longer share the same garden - the one that helped us generate love. That garden exists outside of us, as a shared space.",
+      "The sun shines on everything without judgement - both the good and the bad, the pretty and the ugly. Its light may reveal the kindness in a person's face, or the beauty of holy places; but the sun also shines on the rubbish in the streets. The light isn't changed by them.",
+      "Where there is light, there are also shadows. We can so easily focus only on our shadowy troubles in life, forgetting all about the radiance.",
+      "'The things you own end up owning you.' The problem isn't the object, it's the compulsive clinging attitude inside us. That's the shadow of the ego.",
+      "Change is inevitable... In truth, nothing is ever ours, because life is in a constant state of flux. Our bodies and thoughts, and even our dearly held beliefs, are also in flux. In fact, it is exactly this constant state of flowing change that makes life possible.",
+      "Sometimes, the discomfort we feel is an expression of our unconditional love meeting people who only want to love us conditionally.",
+      "Love is not bound by time. Love is never 'bad'. It can't be.",
+      "We must clearly communicate our needs and expectations for the sake of the relationship and to make sure our unconditional love doesn't encourage unconditional tolerance.",
+      "We don't fall in love, we rise in love.",
+      "'You are not a drop in the ocean;\nYou are the entire ocean in a drop.'",
+      "Those who are comfortable being alone can often love deeply and purely, because they are not sharing to receive, but simply giving.",
+      "Self-love isn't selfish. Self-love means checking in with ourselves regularly. It means asking what we need in order to thrive, without denying our experiences or emotions - or anyone else's.",
+      "Do you know who will never leave your side?\nYou.\n\nPerhaps this is the relationship you need to nurture the most.",
+      "Those who perfectly fit an unconscious longing can seem like a worthy prize. But resisting this magnetic pull is sometimes the most loving act we can do for ourselves.",
+      "Some questions to ask early on:\nQ. How do you define what is morally right or wrong?\nQ. How do you tend to handle disagreements or conflicts?\nQ. What does good communication look like in a relationship?\nQ. How important is physical attraction to you in a relationship?\nQ. Can you describe what you find attractive in a person beyond physical attraction?\nQ. How have you shown empathy to your partner during challenging times?\nQ. How do you handle situations where honesty is difficult but necessary?",
+      "Love is not blind.\n\n\"May you find a love that radically accepts the parts of you that you're still working on.\"",
+      "Nostalgia creates an illusion of compatibility.",
+      "You leave a welcome mat out in front of your heart for somebody who doesn't want to enter, then conclude that something's wrong with your house... the person who ghosts you is doing you a favour. They aren't capable of or willing to communicate big emotions, manage confrontation or exercise authenticity. Had they stayed, an intimate connection or genuine friendship woud've been impossible to foster.",
+      "You deserve a partner who honours your reasonable non-negotiable needs without shaming you for having them. That isn't entitlement - it's reclaiming wholeness.",
+      "Though instincts arise before we can think, awareness creates a space between impulse and response. Within this gap, choice becomes possible.",
+      "Relationships can help us heal old wounds - if we let them.",
+      "'The best way to find out if you can trust somebody is to trust them.' ~ Ernest Hemingway",
+      "Without respectful honesty, there is no trust; without trust, there is no safety; without safety, there is no intimacy; and without intimacy, there is no connection.",
+      ""
+    ]
+  },
+  {
     "bookName": "The Almanack of Naval Ravikant",
     "coverImage": "./assets/images/book-covers/TheAlmanackofNavalRavikant.jpg",
     "author": "Eric Jorgenson",
@@ -67,7 +110,7 @@
       "The democratization of technology allows anyone to be a creator, entrepreneur, scientist. The future is brighter.",
       "It's statistically likely there are more advanced alien civilizations out there. Hopefully, they're good environmentalists and find us cute.",
       "Read enough, and you become a connoissuer.",
-      " "
+      "Health, love, and your mission, in that order. Nothing else matters."
     ]
   },
   {
