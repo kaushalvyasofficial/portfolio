@@ -1233,6 +1233,10 @@ footer {
   margin-bottom: 10px;
 }
 
+.experience-header a {
+  text-decoration: underline var(--text-light);
+}
+
 .experience-header h3 {
   font-size: 1.2rem;
   color: var(--text-lighter);
@@ -1252,9 +1256,11 @@ footer {
   list-style: none;
   padding: 0;
   margin: 0;
+  text-align: justify;
 }
 
 .experience-contributions li {
+
   position: relative;
   padding-left: 20px;
   margin-bottom: 10px;
@@ -1326,7 +1332,7 @@ footer {
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(18, 18, 18, 0.95);
+  background: linear-gradient(90deg, rgba(9, 7, 27, 0.5), rgba(15, 1, 19, 0.5));
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -1337,7 +1343,6 @@ footer {
 }
 
 .navbar.scrolled {
-  background: rgba(18, 18, 18, 0.98);
   box-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
   border-bottom: 1px solid rgba(26, 115, 232, 0.3);
 }
@@ -1387,7 +1392,7 @@ footer {
 }
 
 .brand-text {
-  background: linear-gradient(90deg, #178cec, #641ceb);
+  background: #ced7d8;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1395,11 +1400,9 @@ footer {
 }
 
 .brand-dot {
-  color: var(--primary);
   margin-left: 2px;
-  font-size: 2rem;
-  line-height: 1;
-  animation: pulse 2s infinite;
+  font-size: 1.5rem;
+  line-height: 0;
 }
 
 .brand-link:hover .brand-text {
@@ -1453,13 +1456,13 @@ footer {
 }
 
 .nav-link:hover {
-  color: var(--primary);
+  color: var(--text-light);
   background-color: rgba(26, 115, 232, 0.1);
   transform: translateY(-2px);
 }
 
 .nav-link.active {
-  color: var(--primary);
+  color: var(--text-light);
   background-color: rgba(26, 115, 232, 0.15);
   box-shadow: 0 0 20px rgba(26, 115, 232, 0.3);
 }
@@ -1481,7 +1484,7 @@ footer {
 }
 
 .theme-toggle:hover {
-  border-color: var(--primary);
+  border-color: var(--text-light);
   background-color: rgba(26, 115, 232, 0.1);
   transform: rotate(180deg);
 }
@@ -1514,7 +1517,7 @@ footer {
 
 .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
   transform: rotate(45deg) translate(6px, 6px);
-  background-color: var(--primary);
+  background-color: var(--text-light);
 }
 
 .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
@@ -1524,7 +1527,7 @@ footer {
 
 .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
   transform: rotate(-45deg) translate(6px, -6px);
-  background-color: var(--primary);
+  background-color: var(--text-light);
 }
 
 /* Mobile Menu Overlay */
@@ -1616,7 +1619,7 @@ footer {
   left: 0;
   width: 0;
   height: 100%;
-  background: linear-gradient(90deg, var(--primary), #00d4ff);
+  background: linear-gradient(90deg, var(--text-light), #00d4ff);
   border-radius: 10px;
   transition: width 0.3s ease;
   z-index: -1;
@@ -1760,7 +1763,7 @@ footer {
 .theme-toggle:focus,
 .mobile-menu-toggle:focus,
 .brand-link:focus {
-  outline: 2px solid var(--primary);
+  outline: 1px solid var(--primary);
   outline-offset: 2px;
 }
 
