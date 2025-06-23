@@ -17,50 +17,50 @@
 
 <body>
     <!-- Add this navbar section right after the opening <body> tag -->
-<nav class="navbar" id="navbar" style="z-index: 5;">
-    <div class="nav-container">
-        <!-- Logo/Brand -->
-        <div class="nav-brand">
-            <a href="#home" class="brand-link">
-                <span class="brand-text">Carpe Diem ✨</span>
-                <!-- <span class="brand-dot">.</span> -->
-            </a>
+    <nav class="navbar" id="navbar" style="z-index: 5;">
+        <div class="nav-container">
+            <!-- Logo/Brand -->
+            <div class="nav-brand">
+                <a href="#home" class="brand-link">
+                    <span class="brand-text">Carpe Diem ✨</span>
+                    <!-- <span class="brand-dot">.</span> -->
+                </a>
+            </div>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#achievements" class="nav-link">Achievements</a></li>
+                <li><a href="#resume" class="nav-link">Resume</a></li>
+                <li><a href="#threads" class="nav-link">Threads</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+            <!-- Mobile Menu Toggle -->
+            <div class="mobile-menu-toggle" id="mobile-toggle">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </div>
         </div>
 
-        <!-- Navigation Links -->
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#home" class="nav-link active">Home</a></li>
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#experience" class="nav-link">Experience</a></li>
-            <li><a href="#achievements" class="nav-link">Achievements</a></li>
-            <li><a href="#resume" class="nav-link">Resume</a></li>
-            <li><a href="#threads" class="nav-link">Threads</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-
-        <!-- Mobile Menu Toggle -->
-        <div class="mobile-menu-toggle" id="mobile-toggle">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" id="mobile-overlay">
+            <ul class="mobile-nav-links">
+                <li><a href="#home" class="mobile-nav-link">Home</a></li>
+                <li><a href="#about" class="mobile-nav-link">About</a></li>
+                <li><a href="#experience" class="mobile-nav-link">Experience</a></li>
+                <li><a href="#achievements" class="mobile-nav-link">Achievements</a></li>
+                <li><a href="#resume" class="mobile-nav-link">Resume</a></li>
+                <li><a href="#threads" class="mobile-nav-link">Threads</a></li>
+                <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+            </ul>
         </div>
-    </div>
+    </nav>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay" id="mobile-overlay">
-        <ul class="mobile-nav-links">
-            <li><a href="#home" class="mobile-nav-link">Home</a></li>
-            <li><a href="#about" class="mobile-nav-link">About</a></li>
-            <li><a href="#experience" class="mobile-nav-link">Experience</a></li>
-            <li><a href="#achievements" class="mobile-nav-link">Achievements</a></li>
-            <li><a href="#resume" class="mobile-nav-link">Resume</a></li>
-            <li><a href="#threads" class="mobile-nav-link">Threads</a></li>
-            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
-        </ul>
-    </div>
-</nav>
-
-    <button id="unmuteButton" >Enable Music</button>
+    <button id="unmuteButton">Enable Music</button>
     <audio id="bgMusic" loop>
         <source src="assets/background-music.mp3" type="audio/mpeg">
     </audio>
@@ -82,7 +82,7 @@
                 </h1>
                 <p class="subtitle">Army Ward • Blogger • Developer • Reader • Photographer • Traveller • <b>ENTJ-A</b>
                 </p>
-                <p><i style="color: rgb(99, 99, 99);">updated on 22 June 2025.</i></p>
+                <p><i style="color: rgb(99, 99, 99);">updated on 24 June 2025.</i></p>
             </section>
 
             <!-- ABOUT -->
@@ -92,7 +92,7 @@
                     I'm busy curating quotes, listening to LOTS of music, or chasing sunsets with my camera.</p><br>
                 <p>With a blend of technical skills and creative vision, I approach problems with both logic and
                     imagination (and lots of AI).</p>
-                
+
             </section>
             <section id="experience" class="section">
                 <h2>Experience</h2>
@@ -127,7 +127,8 @@
                                     Rupees</b>, <b>10,000+ registrations</b> and <b>2,500+ submissions</b>. Secured
                                 sponsorships from companies like <b>udChalo</b>, <b>Josh Software</b>,
                                 <b>Cloudflare</b>, <b>NordVPN</b>, <b>Max Protein</b>, etc. <b>5,00.000+</b> Social
-                                Media Impressions.</li>
+                                Media Impressions.
+                            </li>
                             <li>
                                 Led various flagship initiatives like <b>Spark</b> (Web-development classes),
                                 <b>Replica</b> (Website-cloning competition), <b>Graphica</b> (8-hr Hackathon
@@ -287,9 +288,9 @@
 
     <!-- FOOTER -->
     <footer>
-    <p>Email Me at <b>kaushalvyasofficial@gmail.com</b></p>
-    <p>&copy; <span id="current-year">2025</span> Kaushal Vyas. Made with ☕ and ❤️</p>
-</footer>
+        <p>Email Me at <b>kaushalvyasofficial@gmail.com</b></p>
+        <p>&copy; <span id="current-year">2025</span> Kaushal Vyas. Made with ☕ and ❤️</p>
+    </footer>
     <script>
         const unmuteButton = document.getElementById('unmuteButton');
         const bgMusic = document.getElementById('bgMusic');
