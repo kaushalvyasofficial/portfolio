@@ -1397,11 +1397,13 @@ footer {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: var(--transition);
+  font-size: medium;
+  margin-left: -20px;
 }
 
 .brand-dot {
   margin-left: 2px;
-  font-size: 1.5rem;
+  font-size: medium;
   line-height: 0;
 }
 
@@ -1960,6 +1962,7 @@ footer {
     height: 60px;
     display: flex;
     align-items: center;
+    padding-bottom: 15px;
     justify-content: center;
     transition: var(--transition);
 }
@@ -2052,9 +2055,16 @@ footer {
     .education-institution {
         font-size: 1rem;
     }
+    .brand-text {
+      margin-left: 0px;
+    }
 }
 
 @media (max-width: 480px) {
+  
+    .brand-text {
+      margin-left: 0px;
+    }
     .education-item {
         padding: 20px;
     }
