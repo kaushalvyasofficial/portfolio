@@ -144,15 +144,6 @@
         "icon": "✒️"
     },
     {
-        "title": "CLASS 12 ISC BOARD Examinations",
-        "date": "2021-07-24",
-        "description": "Average Marks: 85%\n\nMaths: 89/100\nComputer Science: 93/100\nPhysics: 82/100\nChemistry: 74/100\nEnglish: 88/100",
-        "proofLink": "https://drive.google.com/file/d/1W1EcOi47Ab2KxGthjHfwjdsSToLfjOi_/",
-        "rating": 4,
-        "category": "Test Score",
-        "icon": "🎓"
-    },
-    {
         "title": "Pearson Undergraduate Entrance Exam",
         "date": "2021-07-23",
         "description": "Total: 780/900\n\nQuantitative Reasoning: 300/300\nAbstract Reasoning: 257/300\nVerbal Reasoning: 223/300",
@@ -166,15 +157,6 @@
         "date": "2021-01-31",
         "description": "Critical Thinking: AIR 1\nMathematics: AIR 97\nChemistry: AIR 103\nPhysics: AIR 121",
         "proofLink": "https://drive.google.com/file/d/1kNOrCoXyN57c8frZc1Uay2phjazs6lef/",
-        "rating": 4,
-        "category": "Test Score",
-        "icon": "🎓"
-    },
-    {
-        "title": "CLASS 10 ICSE BOARD Examinations",
-        "date": "2019-05-07",
-        "description": "Average Marks: 93%\n\nMaths: 100/100\nComputer Applications: 95/100\nScience: 84/100\nSocial Studies: 90/100\nEnglish: 84/100\nHindi: 94/100",
-        "proofLink": "https://drive.google.com/file/d/1HUimJUEjh9209rTV1WkqkQsVDI4KoSlk/",
         "rating": 4,
         "category": "Test Score",
         "icon": "🎓"
