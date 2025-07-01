@@ -110,10 +110,8 @@ async function loadQuotes() {
         // Generate book cards HTML
         container.innerHTML = books.map((book, index) => {
 
-            // Get quotes array
             const allQuotes = Array.isArray(book.quotes) ? book.quotes : "No quotes available";
             const firstQuote = allQuotes[0] || "No quotes available";
-            //   <span class="quote-count">${allQuotes.length} quote${allQuotes.length !== 1 ? 's' : ''}</span>
             return `
   <div class="book-card" data-book-index="${index}">
     <div class="book-preview" onclick="toggleBookQuotes(${index})">
