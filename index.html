@@ -16,7 +16,6 @@
 </head>
 
 <body>
-    <!-- Add this navbar section right after the opening <body> tag -->
     <nav class="navbar" id="navbar" style="z-index: 5;">
         <div class="nav-container">
             <!-- Logo/Brand -->
@@ -227,7 +226,6 @@
                         </div>
                         <ul class="experience-contributions">
                             <li><i>To be updated.</i></li>
-                            <!-- Add more contributions as needed -->
                         </ul>
                         <div class="skills-acquired">
                             <h4>Skills Acquired:</h4>
@@ -266,7 +264,6 @@
                                 end-to-end execution of speaker sessions, tech mentorships, and collab with other tech
                                 clubs.
                             </li>
-                            <!-- Add more contributions as needed -->
                         </ul>
                         <div class="skills-acquired">
                             <h4>Skills Acquired:</h4>
@@ -297,7 +294,6 @@
                         <ul class="experience-contributions">
                             <li>Collected client-specific data, analysed their requirements and produced consistent and
                                 attractive social-media posts.</li>
-                            <!-- Add more contributions as needed -->
                         </ul>
                         <div class="skills-acquired">
                             <h4>Skills Acquired:</h4>
@@ -312,11 +308,8 @@
 
             <section id="achievements" class="section">
                 <h2>Achievements</h2>
-                <p>My journey of accomplishments and milestones</p>
-
-                <!-- This is the container that your JavaScript looks for -->
+                <p>My journey of accomplishments and milestones</p> 
                 <div id="achievements-container">
-                    <!-- JavaScript will populate this with timeline content -->
                 </div>
             </section>
 
@@ -349,7 +342,6 @@
                         target="_blank" rel="noopener noreferrer" class="btn">Click Here to View My Book Reading
                         List</a>
                 <div id="threads-container">
-                    <!-- JS will populate book dropdowns + quotes -->
                     <p class="placeholder">My favorite book quotes will appear here soon...</p>
                 </div>
             </section>
@@ -359,14 +351,12 @@
                 <h2>Get In Touch</h2>
 
                 <form id="contact-form">
-                    <!-- Remove FormSubmit action - we'll handle it via JavaScript -->
                     <input type="text" name="name" placeholder="Your Name" required>
                     <input type="email" name="email" placeholder="Your Email" required>
                     <textarea name="message" placeholder="Your Message" required></textarea>
                     <button type="submit" class="btn">Send Message</button>
                 </form>
 
-                <!-- Hidden thank-you section (already in your HTML) -->
                 <div id="thank-you-message" style="display: none;">
                     <h3>Message Received! 🎉</h3>
                     <p>Thanks for reaching out. I'll get back to you soon.</p>
@@ -418,15 +408,14 @@
         <p>Email Me at <b>kaushalvyasofficial@gmail.com</b></p>
         <p>&copy; <span id="current-year">2025</span> Kaushal Vyas. Made with ☕ and ❤️</p>
     </footer>
-    <script>
+    <!-- <script>
         const unmuteButton = document.getElementById('unmuteButton');
         const bgMusic = document.getElementById('bgMusic');
 
         unmuteButton.addEventListener('click', () => {
             bgMusic.play();
-            unmuteButton.style.display = 'none'; // Hide after click
+            unmuteButton.style.display = 'none';
         });
-    </script>
+    </script> -->
 </body>
-
 </html>
