@@ -1686,24 +1686,6 @@ footer {
 
 /* ========== MEDIA QUERIES ========== */
 
-/* Large Desktop (1200px and up) */
-@media (min-width: 1200px) {
-  .main-container {
-    max-width: 1400px;
-    margin: 120px auto 40px;
-    padding: 0 40px;
-  }
-  
-  .sticky-photo {
-    right: calc(50% - 600px);
-    width: 320px;
-  }
-  
-  .navbar {
-    padding: 0 40px;
-  }
-}
-
 /* Desktop/Laptop (992px to 1199px) */
 @media (max-width: 1199px) {
   .sticky-photo {
@@ -2293,31 +2275,5 @@ footer {
   
   .typewriter-cursor {
     animation: none;
-  }
-}
-
-/* Print styles */
-@media print {
-  #bg-video,
-  #bg-overlay,
-  .navbar,
-  .mobile-menu-toggle,
-  .mobile-menu-overlay {
-    display: none !important;
-  }
-  
-  .main-container {
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .sticky-photo {
-    position: static;
-    width: 150px;
-  }
-  
-  .section {
-    page-break-inside: avoid;
   }
 }
