@@ -367,34 +367,34 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ========== SCROLL PROGRESS FUNCTIONALITY ==========
     function updateScrollProgress() {
-    if (isMobile) {
-        // For mobile, use window scroll
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        navbar.style.setProperty('--scroll-progress', `${scrollPercent}%`);
-    } else {
-        // For desktop, calculate maximum progress from both containers
-        let maxScrollProgress = 0;
+        if (isMobile) {
+            // For mobile, use window scroll
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            navbar.style.setProperty('--scroll-progress', `${scrollPercent}%`);
+        } else {
+            // For desktop, calculate maximum progress from both containers
+            let maxScrollProgress = 0;
 
-        if (leftScrollContainer) {
-            const leftScrollTop = leftScrollContainer.scrollTop;
-            const leftDocHeight = leftScrollContainer.scrollHeight - leftScrollContainer.clientHeight;
-            const leftScrollPercent = leftDocHeight > 0 ? (leftScrollTop / leftDocHeight) * 100 : 0;
-            maxScrollProgress = Math.max(maxScrollProgress, leftScrollPercent);
+            if (leftScrollContainer) {
+                const leftScrollTop = leftScrollContainer.scrollTop;
+                const leftDocHeight = leftScrollContainer.scrollHeight - leftScrollContainer.clientHeight;
+                const leftScrollPercent = leftDocHeight > 0 ? (leftScrollTop / leftDocHeight) * 100 : 0;
+                maxScrollProgress = Math.max(maxScrollProgress, leftScrollPercent);
+            }
+
+            if (rightScrollContainer) {
+                const rightScrollTop = rightScrollContainer.scrollTop;
+                const rightDocHeight = rightScrollContainer.scrollHeight - rightScrollContainer.clientHeight;
+                const rightScrollPercent = rightDocHeight > 0 ? (rightScrollTop / rightDocHeight) * 100 : 0;
+                maxScrollProgress = Math.max(maxScrollProgress, rightScrollPercent);
+            }
+
+            // Use the maximum progress from either container
+            navbar.style.setProperty('--scroll-progress', `${maxScrollProgress}%`);
         }
-
-        if (rightScrollContainer) {
-            const rightScrollTop = rightScrollContainer.scrollTop;
-            const rightDocHeight = rightScrollContainer.scrollHeight - rightScrollContainer.clientHeight;
-            const rightScrollPercent = rightDocHeight > 0 ? (rightScrollTop / rightDocHeight) * 100 : 0;
-            maxScrollProgress = Math.max(maxScrollProgress, rightScrollPercent);
-        }
-
-        // Use the maximum progress from either container
-        navbar.style.setProperty('--scroll-progress', `${maxScrollProgress}%`);
     }
-}
     // ========== NAVBAR SCROLL EFFECTS ==========
     function handleNavbarScroll() {
         if (isMobile) {
@@ -551,21 +551,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Scroll event listeners
         if (isMobile) {
-            window.addEventListener('scroll', function() {
+            window.addEventListener('scroll', function () {
                 updateScrollProgress();
                 handleNavbarScroll();
                 updateActiveLink();
             });
         } else {
             if (leftScrollContainer) {
-                leftScrollContainer.addEventListener('scroll', function() {
+                leftScrollContainer.addEventListener('scroll', function () {
                     updateScrollProgress();
                     updateActiveLink();
                 });
             }
 
             if (rightScrollContainer) {
-                rightScrollContainer.addEventListener('scroll', function() {
+                rightScrollContainer.addEventListener('scroll', function () {
                     updateScrollProgress();
                     updateActiveLink();
                 });
@@ -578,7 +578,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // Window resize handler
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             const newIsMobile = window.innerWidth <= 768;
             if (newIsMobile !== isMobile) {
                 isMobile = newIsMobile;
