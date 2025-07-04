@@ -1684,29 +1684,640 @@ footer {
   align-self: flex-start;
 }
 
-/* Custom scrollbar for both containers */
-.left-scroll-container::-webkit-scrollbar,
-.right-scroll-container::-webkit-scrollbar {
-  width: 8px;
+/* ========== MEDIA QUERIES ========== */
+
+/* Large Desktop (1200px and up) */
+@media (min-width: 1200px) {
+  .main-container {
+    max-width: 1400px;
+    margin: 120px auto 40px;
+    padding: 0 40px;
+  }
+  
+  .sticky-photo {
+    right: calc(50% - 600px);
+    width: 320px;
+  }
+  
+  .navbar {
+    padding: 0 40px;
+  }
 }
 
-.main-container {
-  padding-right: 5px;
+/* Desktop/Laptop (992px to 1199px) */
+@media (max-width: 1199px) {
+  .sticky-photo {
+    right: 8rem;
+    width: 280px;
+  }
+  
+  .main-container {
+    gap: 40px;
+  }
+  
+  .navbar {
+    padding: 0 30px;
+  }
 }
 
-.left-scroll-container::-webkit-scrollbar-track,
-.right-scroll-container::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+/* Tablet Large (768px to 991px) */
+@media (max-width: 991px) {
+  .main-container {
+    flex-direction: column;
+    gap: 20px;
+    padding: 2rem 1rem;
+    margin: 100px auto 40px;
+  }
+  
+  .left-content {
+    max-width: 100%;
+    order: 2;
+  }
+  
+  .right-content {
+    max-width: 100%;
+    order: 1;
+  }
+  
+  .left-scroll-container {
+    height: auto;
+    overflow-y: visible;
+    padding-right: 0;
+  }
+  
+  .right-scroll-container {
+    margin-top: 0;
+    max-height: none;
+    overflow-y: visible;
+    padding: 0;
+  }
+  
+  .sticky-photo {
+    position: static;
+    width: 200px;
+    margin: 0 auto 2rem;
+    padding: 10px;
+  }
+  
+  #contact {
+    position: static;
+    top: auto;
+  }
+  
+  .section {
+    margin: 30px 20px;
+    padding: 30px 15px;
+  }
+  
+  h1 {
+    font-size: 2.2rem;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  /* Navigation adjustments */
+  .navbar {
+    padding: 0 20px;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+  
+  .mobile-menu-toggle {
+    display: flex;
+  }
+  
+  /* Experience section adjustments */
+  .experience-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .experience-date {
+    font-size: 0.9rem;
+  }
+  
+  .skills-acquired ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .skills-acquired li {
+    background: rgba(26, 115, 232, 0.1);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+  }
 }
 
-.left-scroll-container::-webkit-scrollbar-thumb,
-.right-scroll-container::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
+/* Tablet Portrait (576px to 767px) */
+@media (max-width: 767px) {
+  .main-container {
+    padding: 1rem 0.5rem;
+    margin: 80px auto 20px;
+  }
+  
+  .sticky-photo {
+    width: 150px;
+  }
+  
+  .sticky-photo img {
+    border: 2px solid var(--primary);
+  }
+  
+  .section {
+    margin: 20px 10px;
+    padding: 20px 10px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  /* Education section adjustments */
+  .education-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .education-meta {
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+  }
+  
+  .education-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+  
+  .education-degree {
+    font-size: 1.2rem;
+  }
+  
+  .education-institution {
+    font-size: 1rem;
+  }
+  
+  /* Experience section */
+  .experience-contributions li {
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  
+  .skills-acquired h4 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  
+  /* Contact form */
+  #contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  #contact-form input,
+  #contact-form textarea {
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+  }
+  
+  .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .social-links a {
+    color: var(--primary);
+    text-decoration: none;
+    padding: 8px 12px;
+    border: 1px solid var(--primary);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+  }
+  
+  /* Navbar adjustments */
+  .navbar {
+    padding: 0 15px;
+  }
+  
+  .brand-text {
+    font-size: 0.9rem;
+  }
+  
+  /* Footer */
+  footer {
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
 }
 
-.left-scroll-container::-webkit-scrollbar-thumb:hover,
-.right-scroll-container::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
+/* Mobile Large (481px to 575px) */
+@media (max-width: 575px) {
+  html {
+    font-size: 15px;
+  }
+  
+  .main-container {
+    padding: 0.5rem 0.25rem;
+    margin: 60px auto 10px;
+  }
+  
+  .sticky-photo {
+    width: 120px;
+    padding: 5px;
+  }
+  
+  .section {
+    margin: 15px 5px;
+    padding: 15px 5px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  h2 {
+    font-size: 1.4rem;
+  }
+  
+  .subtitle {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+  
+  /* Experience section */
+  .experience-item {
+    padding: 20px 15px;
+    margin-bottom: 20px;
+  }
+  
+  .experience-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .experience-date {
+    font-size: 0.85rem;
+  }
+  
+  .experience-contributions li {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+  
+  .skills-acquired li {
+    font-size: 0.75rem;
+    padding: 3px 6px;
+  }
+  
+  /* Education section */
+  .education-item {
+    padding: 15px 10px;
+  }
+  
+  .education-degree {
+    font-size: 1.1rem;
+  }
+  
+  .education-institution {
+    font-size: 0.95rem;
+  }
+  
+  .education-duration,
+  .education-grade {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+  
+  /* Resume section */
+  .resume-skills-list li {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+  
+  /* Contact form */
+  #contact-form input,
+  #contact-form textarea {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+  
+  .social-links {
+    gap: 10px;
+  }
+  
+  .social-links a {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
+  
+  /* Navbar */
+  .brand-text {
+    font-size: 0.8rem;
+  }
+  
+  .hamburger-line {
+    height: 2px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile Small (320px to 480px) */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .main-container {
+    padding: 0.25rem 0.1rem;
+    margin: 40px auto 5px;
+  }
+  
+  .sticky-photo {
+    width: 100px;
+  }
+  
+  .section {
+    margin: 10px 0;
+    padding: 10px 5px;
+  }
+  
+  h1 {
+    font-size: 1.6rem;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  h2::after {
+    width: 40px;
+    height: 2px;
+  }
+  
+  .subtitle {
+    font-size: 0.9rem;
+  }
+  
+  /* Typewriter effect */
+  .typewriter {
+    display: block;
+    margin-top: 5px;
+  }
+  
+  /* Experience section */
+  .experience-item {
+    padding: 15px 10px;
+  }
+  
+  .experience-header h3 {
+    font-size: 1rem;
+  }
+  
+  .experience-contributions li {
+    font-size: 0.85rem;
+  }
+  
+  .skills-acquired h4 {
+    font-size: 0.9rem;
+  }
+  
+  /* Education section */
+  .education-header {
+    gap: 10px;
+  }
+  
+  .education-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    padding: 8px;
+  }
+  
+  .education-degree {
+    font-size: 1rem;
+  }
+  
+  .education-institution {
+    font-size: 0.9rem;
+  }
+  
+  .education-university {
+    font-size: 0.8rem;
+  }
+  
+  .education-meta {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  /* Contact section */
+  #contact-form {
+    gap: 12px;
+  }
+  
+  #contact-form input,
+  #contact-form textarea {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+  
+  .social-links {
+    gap: 8px;
+  }
+  
+  .social-links a {
+    font-size: 0.8rem;
+    padding: 5px 8px;
+  }
+  
+  /* Navbar */
+  .navbar {
+    padding: 0 10px;
+  }
+  
+  .brand-text {
+    font-size: 0.7rem;
+  }
+  
+  .brand-dot {
+    font-size: 0.8rem;
+  }
+  
+  .btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+  
+  /* Footer */
+  footer {
+    padding: 15px 10px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Extra Small Mobile (less than 320px) */
+@media (max-width: 319px) {
+  html {
+    font-size: 13px;
+  }
+  
+  .main-container {
+    padding: 0.1rem;
+    margin: 30px auto 5px;
+  }
+  
+  .sticky-photo {
+    width: 80px;
+  }
+  
+  .section {
+    padding: 8px 2px;
+  }
+  
+  h1 {
+    font-size: 1.4rem;
+  }
+  
+  h2 {
+    font-size: 1.2rem;
+  }
+  
+  .subtitle {
+    font-size: 0.8rem;
+  }
+  
+  .experience-item,
+  .education-item {
+    padding: 10px 8px;
+  }
+  
+  .education-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+  
+  .btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .navbar {
+    padding: 0 8px;
+  }
+  
+  .brand-text {
+    font-size: 0.65rem;
+  }
+}
+
+/* Landscape orientation for tablets and small laptops */
+@media (max-width: 1024px) and (orientation: landscape) {
+  .main-container {
+    flex-direction: row;
+    gap: 20px;
+    padding: 1rem;
+  }
+  
+  .left-content {
+    order: 1;
+    max-width: 65%;
+  }
+  
+  .right-content {
+    order: 2;
+    max-width: 35%;
+  }
+  
+  .sticky-photo {
+    position: static;
+    width: 120px;
+    margin: 0 0 1rem;
+  }
+  
+  .right-scroll-container {
+    margin-top: 0;
+  }
+  
+  .section {
+    padding: 15px 10px;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .sticky-photo img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .typewriter-cursor {
+    animation: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  #bg-video,
+  #bg-overlay,
+  .navbar,
+  .mobile-menu-toggle,
+  .mobile-menu-overlay {
+    display: none !important;
+  }
+  
+  .main-container {
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .sticky-photo {
+    position: static;
+    width: 150px;
+  }
+  
+  .section {
+    page-break-inside: avoid;
+  }
 }
