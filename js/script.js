@@ -353,15 +353,39 @@ document.addEventListener('DOMContentLoaded', function () {
     const mobileToggle = document.getElementById('mobile-toggle');
     const mobileOverlay = document.getElementById('mobile-overlay');
     const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+    const leftScrollContainer = document.querySelector('.left-scroll-container');
+    const rightScrollContainer = document.querySelector('.right-scroll-container');
 
     let lastScrollTop = 0;
     let scrollTimeout;
+    let leftScrollTimeout;
+    let rightScrollTimeout;
 
     // ========== SCROLL PROGRESS FUNCTIONALITY ==========
     function updateScrollProgress() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrollPercent = Math.min(100, Math.max(0, (scrollTop / docHeight) * 100));
+        // Calculate combined scroll progress from both containers
+        let totalScrollProgress = 0;
+        let containerCount = 0;
+
+        if (leftScrollContainer) {
+            const leftScrollTop = leftScrollContainer.scrollTop;
+            const leftDocHeight = leftScrollContainer.scrollHeight - leftScrollContainer.clientHeight;
+            const leftScrollPercent = leftDocHeight > 0 ? (leftScrollTop / leftDocHeight) * 100 : 0;
+            totalScrollProgress += leftScrollPercent;
+            containerCount++;
+        }
+
+        if (rightScrollContainer) {
+            const rightScrollTop = rightScrollContainer.scrollTop;
+            const rightDocHeight = rightScrollContainer.scrollHeight - rightScrollContainer.clientHeight;
+            const rightScrollPercent = rightDocHeight > 0 ? (rightScrollTop / rightDocHeight) * 100 : 0;
+            totalScrollProgress += rightScrollPercent;
+            containerCount++;
+        }
+
+        // Average the scroll progress
+        const averageScrollProgress = containerCount > 0 ? totalScrollProgress / containerCount : 0;
+        const scrollPercent = Math.min(100, Math.max(0, averageScrollProgress));
 
         navbar.style.setProperty('--scroll-progress', `${scrollPercent}%`);
     }
@@ -377,7 +401,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ========== NAVBAR SCROLL EFFECTS ==========
     function handleNavbarScroll() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        // Use window scroll for navbar behavior on mobile, container scroll on desktop
+        const isMobile = window.innerWidth <= 768;
+        let scrollTop = 0;
+
+        if (isMobile) {
+            scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        } else {
+            // Use the maximum scroll position from both containers
+            const leftScroll = leftScrollContainer ? leftScrollContainer.scrollTop : 0;
+            const rightScroll = rightScrollContainer ? rightScrollContainer.scrollTop : 0;
+            scrollTop = Math.max(leftScroll, rightScroll);
+        }
 
         // Add scrolled class when scrolled down
         if (scrollTop > 50) {
@@ -413,34 +448,142 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ========== ACTIVE LINK FUNCTIONALITY ==========
     function updateActiveLink() {
-        const sections = document.querySelectorAll('section[id]');
-        const scrollPos = window.pageYOffset + 100;
+        const isMobile = window.innerWidth <= 768;
+        let activeSection = null;
 
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
+        if (isMobile) {
+            // Mobile: use traditional window scroll detection
+            const sections = document.querySelectorAll('section[id]');
+            const scrollPos = window.pageYOffset + 100;
 
-            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                // Remove active class from all links
-                navLinks.forEach(link => link.classList.remove('active'));
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
 
-                // Add active class to current section links
-                document.querySelectorAll(`a[href="#${sectionId}"]`).forEach(link => {
-                    link.classList.add('active');
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    activeSection = sectionId;
+                }
+            });
+        } else {
+            // Desktop: detect active section in both containers
+            const leftSections = leftScrollContainer ? leftScrollContainer.querySelectorAll('section[id]') : [];
+            const rightSections = rightScrollContainer ? rightScrollContainer.querySelectorAll('section[id]') : [];
+
+            // Check left container
+            if (leftScrollContainer) {
+                const leftScrollPos = leftScrollContainer.scrollTop + 50;
+                leftSections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+
+                    if (leftScrollPos >= sectionTop && leftScrollPos < sectionTop + sectionHeight) {
+                        activeSection = sectionId;
+                    }
                 });
             }
-        });
+
+            // Check right container
+            if (rightScrollContainer) {
+                const rightScrollPos = rightScrollContainer.scrollTop + 50;
+                rightSections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+
+                    if (rightScrollPos >= sectionTop && rightScrollPos < sectionTop + sectionHeight) {
+                        activeSection = sectionId;
+                    }
+                });
+            }
+        }
+
+        // Update active links
+        if (activeSection) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            document.querySelectorAll(`a[href="#${activeSection}"]`).forEach(link => {
+                link.classList.add('active');
+            });
+        }
+    }
+
+    // ========== SMOOTH SCROLLING FUNCTIONALITY ==========
+    function smoothScrollToSection(targetId) {
+        const targetSection = document.getElementById(targetId);
+        if (!targetSection) return;
+
+        const isMobile = window.innerWidth <= 768;
+
+        if (isMobile) {
+            // Mobile: use traditional window scroll
+            const offsetTop = targetSection.offsetTop - 70;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        } else {
+            // Desktop: determine which container contains the target
+            const leftContainer = leftScrollContainer;
+            const rightContainer = rightScrollContainer;
+            
+            let targetContainer = null;
+            
+            if (leftContainer && leftContainer.contains(targetSection)) {
+                targetContainer = leftContainer;
+            } else if (rightContainer && rightContainer.contains(targetSection)) {
+                targetContainer = rightContainer;
+            }
+
+            if (targetContainer) {
+                const containerRect = targetContainer.getBoundingClientRect();
+                const sectionRect = targetSection.getBoundingClientRect();
+                const offsetTop = targetSection.offsetTop - 20; // Small offset for better positioning
+
+                targetContainer.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
     }
 
     // ========== EVENT LISTENERS ==========
 
-    // Scroll events
+    // Window scroll events (for mobile)
     window.addEventListener('scroll', () => {
-        throttledScrollProgress();
-        handleNavbarScroll();
-        updateActiveLink();
+        if (window.innerWidth <= 768) {
+            throttledScrollProgress();
+            handleNavbarScroll();
+            updateActiveLink();
+        }
     }, { passive: true });
+
+    // Left container scroll events
+    if (leftScrollContainer) {
+        leftScrollContainer.addEventListener('scroll', () => {
+            if (leftScrollTimeout) return;
+            leftScrollTimeout = setTimeout(() => {
+                throttledScrollProgress();
+                handleNavbarScroll();
+                updateActiveLink();
+                leftScrollTimeout = null;
+            }, 10);
+        }, { passive: true });
+    }
+
+    // Right container scroll events
+    if (rightScrollContainer) {
+        rightScrollContainer.addEventListener('scroll', () => {
+            if (rightScrollTimeout) return;
+            rightScrollTimeout = setTimeout(() => {
+                throttledScrollProgress();
+                handleNavbarScroll();
+                updateActiveLink();
+                rightScrollTimeout = null;
+            }, 10);
+        }, { passive: true });
+    }
 
     // Mobile menu events
     mobileToggle.addEventListener('click', toggleMobileMenu);
@@ -460,15 +603,7 @@ document.addEventListener('DOMContentLoaded', function () {
         link.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetId);
-
-            if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 70; // Account for navbar height
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
+            smoothScrollToSection(targetId);
         });
     });
 
@@ -477,6 +612,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (e.key === 'Escape' && mobileOverlay.classList.contains('active')) {
             closeMobileMenu();
         }
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        updateScrollProgress();
+        updateActiveLink();
     });
 
     // Initial calls

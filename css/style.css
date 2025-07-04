@@ -109,25 +109,7 @@ h2::after {
   flex: 2;
 }
 
-.right-photo {
-  flex: 1;
-  position: sticky;
-  top: 100px;
-  display: flex;
-  justify-content: center;
-}
-
-.right-photo img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid var(--primary);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  transition: var(--transition);
-}
-
-.right-photo img:hover {
+.sticky-photo img:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.7);
 }
@@ -135,7 +117,7 @@ h2::after {
 .section {
   padding: 50px 20px;
   max-width: 1000px;
-  margin: 50px 100px;
+  margin: 50px 50px;
   animation: fadeIn 0.6s ease-out forwards;
 }
 
@@ -2096,7 +2078,7 @@ footer {
 }
 
 .left-scroll-container {
-    height: 145vh;
+    height: 350vh;
     overflow-y: auto;
     padding-right: 1rem;
     scroll-behavior: smooth;
@@ -2107,43 +2089,65 @@ footer {
 /* Right content */
 .right-content {
     flex: 1;
-    max-width: 40%;
-    position: relative;
-    scrollbar-width: none;
+  max-width: 40%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-y: auto;
+  right: 0;
+  
 }
-
+#education {
+  padding: 0;
+}
 /* Sticky photo */
 .sticky-photo {
-    position: relative;
-    top: 2rem;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto 2rem;
-    z-index: 1;
+    position: fixed;
+    top: 100px;
+    right: 16rem; /* Adjust based on your layout */
+    width: 300px;
+    z-index: 10;
+    padding: 20px;
+    border-radius: 20px;
 }
 
 .sticky-photo img {
-    width: 100%;
-    height: auto;
-    border-radius: 50%;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+     width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--primary);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  transition: var(--transition);
 }
 
 /* Right scroll container */
 .right-scroll-container {
-    height: 100vh;
-    overflow-y: auto;
-    padding-left: 1rem;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
+    flex: 1;
+  max-height: 100%;
+  overflow-y: auto;
+  margin-top: 20rem;
+  padding: 20px;
+  bottom: 0;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  z-index: 1;
 }
-
+#contact {
+  position: sticky;
+    top: 4020px; /* Adjust this value based on photo height + spacing */
+    z-index: 9; /* Lower than photo but still on top */
+    align-self: flex-start;
+}
 /* Custom scrollbar for both containers */
 .left-scroll-container::-webkit-scrollbar,
 .right-scroll-container::-webkit-scrollbar {
     width: 8px;
 }
-
+.main-container {
+  padding-right: 5px;
+}
 .left-scroll-container::-webkit-scrollbar-track,
 .right-scroll-container::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.1);
