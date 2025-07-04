@@ -355,82 +355,72 @@ document.addEventListener('DOMContentLoaded', function () {
     const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
     const leftScrollContainer = document.querySelector('.left-scroll-container');
     const rightScrollContainer = document.querySelector('.right-scroll-container');
+    const sections = document.querySelectorAll('section[id]');
 
     let lastScrollTop = 0;
     let scrollTimeout;
-    let leftScrollTimeout;
-    let rightScrollTimeout;
+    let isMobile = window.innerWidth <= 768;
+
+    // Initialize
+    setupEventListeners();
+    updateActiveLink();
 
     // ========== SCROLL PROGRESS FUNCTIONALITY ==========
     function updateScrollProgress() {
-        // Calculate combined scroll progress from both containers
-        let totalScrollProgress = 0;
-        let containerCount = 0;
+    if (isMobile) {
+        // For mobile, use window scroll
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        navbar.style.setProperty('--scroll-progress', `${scrollPercent}%`);
+    } else {
+        // For desktop, calculate maximum progress from both containers
+        let maxScrollProgress = 0;
 
         if (leftScrollContainer) {
             const leftScrollTop = leftScrollContainer.scrollTop;
             const leftDocHeight = leftScrollContainer.scrollHeight - leftScrollContainer.clientHeight;
             const leftScrollPercent = leftDocHeight > 0 ? (leftScrollTop / leftDocHeight) * 100 : 0;
-            totalScrollProgress += leftScrollPercent;
-            containerCount++;
+            maxScrollProgress = Math.max(maxScrollProgress, leftScrollPercent);
         }
 
         if (rightScrollContainer) {
             const rightScrollTop = rightScrollContainer.scrollTop;
             const rightDocHeight = rightScrollContainer.scrollHeight - rightScrollContainer.clientHeight;
             const rightScrollPercent = rightDocHeight > 0 ? (rightScrollTop / rightDocHeight) * 100 : 0;
-            totalScrollProgress += rightScrollPercent;
-            containerCount++;
+            maxScrollProgress = Math.max(maxScrollProgress, rightScrollPercent);
         }
 
-        // Average the scroll progress
-        const averageScrollProgress = containerCount > 0 ? totalScrollProgress / containerCount : 0;
-        const scrollPercent = Math.min(100, Math.max(0, averageScrollProgress));
-
-        navbar.style.setProperty('--scroll-progress', `${scrollPercent}%`);
+        // Use the maximum progress from either container
+        navbar.style.setProperty('--scroll-progress', `${maxScrollProgress}%`);
     }
-
-    function throttledScrollProgress() {
-        if (scrollTimeout) return;
-
-        scrollTimeout = setTimeout(() => {
-            updateScrollProgress();
-            scrollTimeout = null;
-        }, 10);
-    }
-
+}
     // ========== NAVBAR SCROLL EFFECTS ==========
     function handleNavbarScroll() {
-        // Use window scroll for navbar behavior on mobile, container scroll on desktop
-        const isMobile = window.innerWidth <= 768;
-        let scrollTop = 0;
-
         if (isMobile) {
-            scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        } else {
-            // Use the maximum scroll position from both containers
-            const leftScroll = leftScrollContainer ? leftScrollContainer.scrollTop : 0;
-            const rightScroll = rightScrollContainer ? rightScrollContainer.scrollTop : 0;
-            scrollTop = Math.max(leftScroll, rightScroll);
-        }
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-        // Add scrolled class when scrolled down
-        if (scrollTop > 50) {
+            // Add scrolled class when scrolled down
+            if (scrollTop > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Hide/show navbar on scroll
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                navbar.classList.add('hide');
+                navbar.classList.remove('show');
+            } else {
+                navbar.classList.remove('hide');
+                navbar.classList.add('show');
+            }
+
+            lastScrollTop = scrollTop;
+        } else {
+            // For desktop, we'll handle this differently
             navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
         }
-
-        // Hide/show navbar on scroll (optional)
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
-            navbar.classList.add('hide');
-            navbar.classList.remove('show');
-        } else {
-            navbar.classList.remove('hide');
-            navbar.classList.add('show');
-        }
-
-        lastScrollTop = scrollTop;
     }
 
     // ========== MOBILE MENU FUNCTIONALITY ==========
@@ -448,12 +438,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ========== ACTIVE LINK FUNCTIONALITY ==========
     function updateActiveLink() {
-        const isMobile = window.innerWidth <= 768;
-        let activeSection = null;
-
         if (isMobile) {
             // Mobile: use traditional window scroll detection
-            const sections = document.querySelectorAll('section[id]');
             const scrollPos = window.pageYOffset + 100;
 
             sections.forEach(section => {
@@ -462,165 +448,142 @@ document.addEventListener('DOMContentLoaded', function () {
                 const sectionId = section.getAttribute('id');
 
                 if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                    activeSection = sectionId;
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
                 }
             });
         } else {
             // Desktop: detect active section in both containers
-            const leftSections = leftScrollContainer ? leftScrollContainer.querySelectorAll('section[id]') : [];
-            const rightSections = rightScrollContainer ? rightScrollContainer.querySelectorAll('section[id]') : [];
+            const leftScrollPos = leftScrollContainer ? leftScrollContainer.scrollTop + 50 : 0;
+            const rightScrollPos = rightScrollContainer ? rightScrollContainer.scrollTop + 50 : 0;
 
-            // Check left container
+            // Check left container sections
             if (leftScrollContainer) {
-                const leftScrollPos = leftScrollContainer.scrollTop + 50;
+                const leftSections = leftScrollContainer.querySelectorAll('section[id]');
                 leftSections.forEach(section => {
                     const sectionTop = section.offsetTop;
                     const sectionHeight = section.offsetHeight;
                     const sectionId = section.getAttribute('id');
 
                     if (leftScrollPos >= sectionTop && leftScrollPos < sectionTop + sectionHeight) {
-                        activeSection = sectionId;
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
                     }
                 });
             }
 
-            // Check right container
+            // Check right container sections
             if (rightScrollContainer) {
-                const rightScrollPos = rightScrollContainer.scrollTop + 50;
+                const rightSections = rightScrollContainer.querySelectorAll('section[id]');
                 rightSections.forEach(section => {
                     const sectionTop = section.offsetTop;
                     const sectionHeight = section.offsetHeight;
                     const sectionId = section.getAttribute('id');
 
                     if (rightScrollPos >= sectionTop && rightScrollPos < sectionTop + sectionHeight) {
-                        activeSection = sectionId;
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
                     }
                 });
             }
         }
-
-        // Update active links
-        if (activeSection) {
-            navLinks.forEach(link => link.classList.remove('active'));
-            document.querySelectorAll(`a[href="#${activeSection}"]`).forEach(link => {
-                link.classList.add('active');
-            });
-        }
     }
 
-    // ========== SMOOTH SCROLLING FUNCTIONALITY ==========
-    function smoothScrollToSection(targetId) {
-        const targetSection = document.getElementById(targetId);
+    // ========== SCROLL TO SECTION ==========
+    function scrollToSection(event) {
+        event.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+
         if (!targetSection) return;
 
-        const isMobile = window.innerWidth <= 768;
-
         if (isMobile) {
-            // Mobile: use traditional window scroll
-            const offsetTop = targetSection.offsetTop - 70;
+            // For mobile, use window scroll
             window.scrollTo({
-                top: offsetTop,
+                top: targetSection.offsetTop - 80,
                 behavior: 'smooth'
             });
+            closeMobileMenu();
         } else {
-            // Desktop: determine which container contains the target
-            const leftContainer = leftScrollContainer;
-            const rightContainer = rightScrollContainer;
-            
-            let targetContainer = null;
-            
-            if (leftContainer && leftContainer.contains(targetSection)) {
-                targetContainer = leftContainer;
-            } else if (rightContainer && rightContainer.contains(targetSection)) {
-                targetContainer = rightContainer;
-            }
+            // For desktop, determine which container the section is in
+            const isInLeftContainer = leftScrollContainer.contains(targetSection);
+            const isInRightContainer = rightScrollContainer.contains(targetSection);
 
-            if (targetContainer) {
-                const containerRect = targetContainer.getBoundingClientRect();
-                const sectionRect = targetSection.getBoundingClientRect();
-                const offsetTop = targetSection.offsetTop - 20; // Small offset for better positioning
-
-                targetContainer.scrollTo({
-                    top: offsetTop,
+            if (isInLeftContainer) {
+                leftScrollContainer.scrollTo({
+                    top: targetSection.offsetTop - leftScrollContainer.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            } else if (isInRightContainer) {
+                rightScrollContainer.scrollTo({
+                    top: targetSection.offsetTop - rightScrollContainer.offsetTop - 20,
                     behavior: 'smooth'
                 });
             }
         }
+
+        // Update active link
+        navLinks.forEach(link => link.classList.remove('active'));
+        this.classList.add('active');
     }
 
-    // ========== EVENT LISTENERS ==========
+    // ========== SETUP EVENT LISTENERS ==========
+    function setupEventListeners() {
+        // Mobile menu toggle
+        mobileToggle.addEventListener('click', toggleMobileMenu);
 
-    // Window scroll events (for mobile)
-    window.addEventListener('scroll', () => {
-        if (window.innerWidth <= 768) {
-            throttledScrollProgress();
-            handleNavbarScroll();
-            updateActiveLink();
-        }
-    }, { passive: true });
-
-    // Left container scroll events
-    if (leftScrollContainer) {
-        leftScrollContainer.addEventListener('scroll', () => {
-            if (leftScrollTimeout) return;
-            leftScrollTimeout = setTimeout(() => {
-                throttledScrollProgress();
-                handleNavbarScroll();
-                updateActiveLink();
-                leftScrollTimeout = null;
-            }, 10);
-        }, { passive: true });
-    }
-
-    // Right container scroll events
-    if (rightScrollContainer) {
-        rightScrollContainer.addEventListener('scroll', () => {
-            if (rightScrollTimeout) return;
-            rightScrollTimeout = setTimeout(() => {
-                throttledScrollProgress();
-                handleNavbarScroll();
-                updateActiveLink();
-                rightScrollTimeout = null;
-            }, 10);
-        }, { passive: true });
-    }
-
-    // Mobile menu events
-    mobileToggle.addEventListener('click', toggleMobileMenu);
-    mobileOverlay.addEventListener('click', (e) => {
-        if (e.target === mobileOverlay) {
-            closeMobileMenu();
-        }
-    });
-
-    // Close mobile menu when clicking nav links
-    document.querySelectorAll('.mobile-nav-link').forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
-    });
-
-    // Smooth scrolling for all nav links
-    navLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            smoothScrollToSection(targetId);
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
         });
-    });
 
-    // Close mobile menu on escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && mobileOverlay.classList.contains('active')) {
-            closeMobileMenu();
+        // Scroll event listeners
+        if (isMobile) {
+            window.addEventListener('scroll', function() {
+                updateScrollProgress();
+                handleNavbarScroll();
+                updateActiveLink();
+            });
+        } else {
+            if (leftScrollContainer) {
+                leftScrollContainer.addEventListener('scroll', function() {
+                    updateScrollProgress();
+                    updateActiveLink();
+                });
+            }
+
+            if (rightScrollContainer) {
+                rightScrollContainer.addEventListener('scroll', function() {
+                    updateScrollProgress();
+                    updateActiveLink();
+                });
+            }
         }
-    });
 
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        updateScrollProgress();
-        updateActiveLink();
-    });
+        // Navigation link clicks
+        navLinks.forEach(link => {
+            link.addEventListener('click', scrollToSection);
+        });
 
-    // Initial calls
-    updateScrollProgress();
-    updateActiveLink();
+        // Window resize handler
+        window.addEventListener('resize', function() {
+            const newIsMobile = window.innerWidth <= 768;
+            if (newIsMobile !== isMobile) {
+                isMobile = newIsMobile;
+                setupEventListeners(); // Re-setup listeners when switching between mobile/desktop
+            }
+        });
+    }
 });
