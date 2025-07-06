@@ -171,6 +171,10 @@ h2::after {
   cursor: not-allowed;
 }
 
+#contact-form {
+  max-width: 100%;
+}
+
 /* Cards */
 .project-card {
   background-color: var(--bg-light);
@@ -713,17 +717,20 @@ textarea:focus {
 /* ========== SOCIAL LINKS ========== */
 .social-links {
   display: flex;
-  gap: 15px;
+  gap: 25px;
   margin-top: 30px;
+  justify-content: center;
 }
 
-.social-links a {
+.social-links a,img {
   color: var(--primary);
   text-decoration: none;
   transition: var(--transition);
   display: inline-flex;
   align-items: center;
   gap: 5px;
+  height: 50px;
+  width: 50px;
 }
 
 .social-links a:hover {
