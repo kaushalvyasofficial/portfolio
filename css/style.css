@@ -99,14 +99,15 @@ h2::after {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  max-width: 1200px;
-  margin: 120px auto 40px;
+  max-width: 100%;
+  margin: 50px auto 40px 100px;
   padding: 0 20px;
   gap: 50px;
 }
 
 .left-content {
   flex: 2;
+  
 }
 
 .right-photo {
@@ -2082,3 +2083,4 @@ footer {
     font-size: 0.8rem;
     padding: 5px 10px;
   }
+}
