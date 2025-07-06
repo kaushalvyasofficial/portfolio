@@ -1,8 +1,11 @@
 // ==================== ON PAGE LOAD ====================
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("current-year").textContent = new Date().getFullYear(); // Update footer year
-    loadQuotes();       // Load quotes from books.json
-    typeWriterName();   // Start name animation
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize all functions
+    initializeNavbar();
+    typeWriterName();
+    loadQuotes();
+    loadAchievements();
+    updateCurrentYear();
 });
 
 // ==================== CONTACT FORM HANDLER ====================
@@ -110,7 +113,7 @@ async function loadQuotes() {
         // Generate book cards HTML
         container.innerHTML = books.map((book, index) => {
 
-            const allQuotes = Array.isArray(book.quotes) ? book.quotes : "No quotes available";
+            const allQuotes = Array.isArray(book.quotes) ? book.quotes : ["No quotes available"];
             const firstQuote = allQuotes[0] || "No quotes available";
             return `
   <div class="book-card" data-book-index="${index}">
@@ -201,43 +204,6 @@ function toggleBookQuotes(bookIndex) {
     }
 }
 
-// ==================== UTILITY FUNCTIONS ====================
-function truncateText(text, maxLength) {
-    if (!text) return '';
-    if (text.length <= maxLength) return text;
-
-    // Find the last space before maxLength to avoid cutting words
-    const truncated = text.substr(0, maxLength);
-    const lastSpace = truncated.lastIndexOf(' ');
-
-    return (lastSpace > 0 ? truncated.substr(0, lastSpace) : truncated) + '...';
-}
-
-function formatDate(dateString) {
-    try {
-        const date = new Date(dateString);
-        return date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric'
-        });
-    } catch (error) {
-        return dateString; // Return original if parsing fails
-    }
-}
-
-// ==================== KEYBOARD NAVIGATION ====================
-document.addEventListener('keydown', function (e) {
-    // ESC key closes all expanded cards
-    if (e.key === 'Escape') {
-        document.querySelectorAll('.book-card.expanded').forEach(card => {
-            card.classList.remove('expanded');
-            const arrow = card.querySelector('.expand-arrow');
-            if (arrow) arrow.textContent = '▼';
-        });
-    }
-});
-
 // ==================== LOAD ACHIEVEMENTS ====================
 async function loadAchievements() {
     const container = document.getElementById("achievements-container");
@@ -311,7 +277,31 @@ async function loadAchievements() {
     }
 }
 
-// ==================== UTILITY FUNCTIONS FOR ACHIEVEMENTS ====================
+// ==================== UTILITY FUNCTIONS ====================
+function truncateText(text, maxLength) {
+    if (!text) return '';
+    if (text.length <= maxLength) return text;
+
+    // Find the last space before maxLength to avoid cutting words
+    const truncated = text.substr(0, maxLength);
+    const lastSpace = truncated.lastIndexOf(' ');
+
+    return (lastSpace > 0 ? truncated.substr(0, lastSpace) : truncated) + '...';
+}
+
+function formatDate(dateString) {
+    try {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        });
+    } catch (error) {
+        return dateString; // Return original if parsing fails
+    }
+}
+
 function generateStarRating(rating) {
     const maxStars = 5;
     let starsHTML = '';
@@ -340,74 +330,50 @@ function formatAchievementDate(dateString) {
     }
 }
 
-// Add achievements loading to the main DOMContentLoaded event
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("current-year").textContent = new Date().getFullYear();
-    loadQuotes();
-    loadAchievements(); // Add this line
-});
+function updateCurrentYear() {
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+}
 
-// ========== NAVBAR FUNCTIONALITY ==========
-document.addEventListener('DOMContentLoaded', function () {
+// ==================== NAVBAR FUNCTIONALITY ====================
+function initializeNavbar() {
     const navbar = document.getElementById('navbar');
     const mobileToggle = document.getElementById('mobile-toggle');
     const mobileOverlay = document.getElementById('mobile-overlay');
     const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
-    const leftScrollContainer = document.querySelector('.left-scroll-container');
-    const rightScrollContainer = document.querySelector('.right-scroll-container');
     const sections = document.querySelectorAll('section[id]');
 
     let lastScrollTop = 0;
-    let scrollTimeout;
     let isMobile = window.innerWidth <= 768;
-
-    // Initialize
-    setupEventListeners();
-    updateActiveLink();
 
     // ========== SCROLL PROGRESS FUNCTIONALITY ==========
     function updateScrollProgress() {
-        if (isMobile) {
-            // For mobile, use window scroll
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        
+        if (navbar) {
             navbar.style.setProperty('--scroll-progress', `${scrollPercent}%`);
-        } else {
-            // For desktop, calculate maximum progress from both containers
-            let maxScrollProgress = 0;
-
-            if (leftScrollContainer) {
-                const leftScrollTop = leftScrollContainer.scrollTop;
-                const leftDocHeight = leftScrollContainer.scrollHeight - leftScrollContainer.clientHeight;
-                const leftScrollPercent = leftDocHeight > 0 ? (leftScrollTop / leftDocHeight) * 100 : 0;
-                maxScrollProgress = Math.max(maxScrollProgress, leftScrollPercent);
-            }
-
-            if (rightScrollContainer) {
-                const rightScrollTop = rightScrollContainer.scrollTop;
-                const rightDocHeight = rightScrollContainer.scrollHeight - rightScrollContainer.clientHeight;
-                const rightScrollPercent = rightDocHeight > 0 ? (rightScrollTop / rightDocHeight) * 100 : 0;
-                maxScrollProgress = Math.max(maxScrollProgress, rightScrollPercent);
-            }
-
-            // Use the maximum progress from either container
-            navbar.style.setProperty('--scroll-progress', `${maxScrollProgress}%`);
         }
     }
+
     // ========== NAVBAR SCROLL EFFECTS ==========
     function handleNavbarScroll() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (!navbar) return;
+
+        // Add scrolled class when scrolled down
+        if (scrollTop > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+
+        // Hide/show navbar on scroll (only on mobile)
         if (isMobile) {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-            // Add scrolled class when scrolled down
-            if (scrollTop > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-
-            // Hide/show navbar on scroll
             if (scrollTop > lastScrollTop && scrollTop > 100) {
                 navbar.classList.add('hide');
                 navbar.classList.remove('show');
@@ -415,90 +381,46 @@ document.addEventListener('DOMContentLoaded', function () {
                 navbar.classList.remove('hide');
                 navbar.classList.add('show');
             }
-
-            lastScrollTop = scrollTop;
-        } else {
-            // For desktop, we'll handle this differently
-            navbar.classList.add('scrolled');
         }
+
+        lastScrollTop = scrollTop;
     }
 
     // ========== MOBILE MENU FUNCTIONALITY ==========
     function toggleMobileMenu() {
-        mobileToggle.classList.toggle('active');
-        mobileOverlay.classList.toggle('active');
-        document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : '';
+        if (mobileToggle && mobileOverlay) {
+            mobileToggle.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : '';
+        }
     }
 
     function closeMobileMenu() {
-        mobileToggle.classList.remove('active');
-        mobileOverlay.classList.remove('active');
-        document.body.style.overflow = '';
+        if (mobileToggle && mobileOverlay) {
+            mobileToggle.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
     }
 
     // ========== ACTIVE LINK FUNCTIONALITY ==========
     function updateActiveLink() {
-        if (isMobile) {
-            // Mobile: use traditional window scroll detection
-            const scrollPos = window.pageYOffset + 100;
+        const scrollPos = window.pageYOffset + 100;
 
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.offsetHeight;
-                const sectionId = section.getAttribute('id');
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
 
-                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${sectionId}`) {
-                            link.classList.add('active');
-                        }
-                    });
-                }
-            });
-        } else {
-            // Desktop: detect active section in both containers
-            const leftScrollPos = leftScrollContainer ? leftScrollContainer.scrollTop + 50 : 0;
-            const rightScrollPos = rightScrollContainer ? rightScrollContainer.scrollTop + 50 : 0;
-
-            // Check left container sections
-            if (leftScrollContainer) {
-                const leftSections = leftScrollContainer.querySelectorAll('section[id]');
-                leftSections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.offsetHeight;
-                    const sectionId = section.getAttribute('id');
-
-                    if (leftScrollPos >= sectionTop && leftScrollPos < sectionTop + sectionHeight) {
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href') === `#${sectionId}`) {
-                                link.classList.add('active');
-                            }
-                        });
+            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
                     }
                 });
             }
-
-            // Check right container sections
-            if (rightScrollContainer) {
-                const rightSections = rightScrollContainer.querySelectorAll('section[id]');
-                rightSections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.offsetHeight;
-                    const sectionId = section.getAttribute('id');
-
-                    if (rightScrollPos >= sectionTop && rightScrollPos < sectionTop + sectionHeight) {
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href') === `#${sectionId}`) {
-                                link.classList.add('active');
-                            }
-                        });
-                    }
-                });
-            }
-        }
+        });
     }
 
     // ========== SCROLL TO SECTION ==========
@@ -509,30 +431,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!targetSection) return;
 
-        if (isMobile) {
-            // For mobile, use window scroll
-            window.scrollTo({
-                top: targetSection.offsetTop - 80,
-                behavior: 'smooth'
-            });
-            closeMobileMenu();
-        } else {
-            // For desktop, determine which container the section is in
-            const isInLeftContainer = leftScrollContainer.contains(targetSection);
-            const isInRightContainer = rightScrollContainer.contains(targetSection);
+        // Calculate offset for navbar
+        const navbarHeight = navbar ? navbar.offsetHeight : 80;
+        const targetOffset = targetSection.offsetTop - navbarHeight - 20;
 
-            if (isInLeftContainer) {
-                leftScrollContainer.scrollTo({
-                    top: targetSection.offsetTop - leftScrollContainer.offsetTop - 20,
-                    behavior: 'smooth'
-                });
-            } else if (isInRightContainer) {
-                rightScrollContainer.scrollTo({
-                    top: targetSection.offsetTop - rightScrollContainer.offsetTop - 20,
-                    behavior: 'smooth'
-                });
-            }
-        }
+        window.scrollTo({
+            top: targetOffset,
+            behavior: 'smooth'
+        });
+
+        // Close mobile menu if open
+        closeMobileMenu();
 
         // Update active link
         navLinks.forEach(link => link.classList.remove('active'));
@@ -542,48 +451,67 @@ document.addEventListener('DOMContentLoaded', function () {
     // ========== SETUP EVENT LISTENERS ==========
     function setupEventListeners() {
         // Mobile menu toggle
-        mobileToggle.addEventListener('click', toggleMobileMenu);
-
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.mobile-nav-link').forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
-        });
-
-        // Scroll event listeners
-        if (isMobile) {
-            window.addEventListener('scroll', function () {
-                updateScrollProgress();
-                handleNavbarScroll();
-                updateActiveLink();
-            });
-        } else {
-            if (leftScrollContainer) {
-                leftScrollContainer.addEventListener('scroll', function () {
-                    updateScrollProgress();
-                    updateActiveLink();
-                });
-            }
-
-            if (rightScrollContainer) {
-                rightScrollContainer.addEventListener('scroll', function () {
-                    updateScrollProgress();
-                    updateActiveLink();
-                });
-            }
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', toggleMobileMenu);
         }
 
-        // Navigation link clicks
-        navLinks.forEach(link => {
+        // Close mobile menu when clicking overlay
+        if (mobileOverlay) {
+            mobileOverlay.addEventListener('click', function(e) {
+                if (e.target === mobileOverlay) {
+                    closeMobileMenu();
+                }
+            });
+        }
+
+        // Close mobile menu when clicking a mobile nav link
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                scrollToSection.call(this, e);
+                closeMobileMenu();
+            });
+        });
+
+        // Desktop navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', scrollToSection);
         });
 
+        // Scroll event listener
+        window.addEventListener('scroll', function() {
+            updateScrollProgress();
+            handleNavbarScroll();
+            updateActiveLink();
+        });
+
         // Window resize handler
-        window.addEventListener('resize', function () {
-            const newIsMobile = window.innerWidth <= 768;
-            if (newIsMobile !== isMobile) {
-                isMobile = newIsMobile;
-                setupEventListeners(); // Re-setup listeners when switching between mobile/desktop
+        window.addEventListener('resize', function() {
+            isMobile = window.innerWidth <= 768;
+            
+            // Close mobile menu if switching to desktop
+            if (!isMobile) {
+                closeMobileMenu();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            // ESC key closes mobile menu and expanded cards
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+                
+                // Close expanded book cards
+                document.querySelectorAll('.book-card.expanded').forEach(card => {
+                    card.classList.remove('expanded');
+                    const arrow = card.querySelector('.expand-arrow');
+                    if (arrow) arrow.textContent = '▼';
+                });
             }
         });
     }
-});
+
+    // Initialize everything
+    setupEventListeners();
+    updateActiveLink();
+    updateScrollProgress();
+}
