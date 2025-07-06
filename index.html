@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Product+Sans:wght@400;700&display=swap" rel="stylesheet">
     <script defer src="js/script.js"></script>
+
 </head>
 
 <body>
@@ -28,13 +29,13 @@
             <!-- Navigation Links -->
             <ul class="nav-links" id="nav-links">
                 <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
-                <!-- <li><a href="#education" class="nav-link">Education</a></li> -->
                 <li><a href="#experience" class="nav-link">Experience</a></li>
                 <li><a href="#achievements" class="nav-link">Achievements</a></li>
                 <li><a href="#resume" class="nav-link">Resume</a></li>
                 <li><a href="#threads" class="nav-link">Threads</a></li>
-                <!-- <li><a href="#contact" class="nav-link">Contact</a></li> -->
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
 
             <!-- Mobile Menu Toggle -->
@@ -60,360 +61,345 @@
         </div>
     </nav>
 
+    <!-- <button id="unmuteButton" style="z-index: 100000;">Enable Music</button>
+    <audio id="bgMusic" style="z-index: auto;">
+        <source src="assets/background-music.mp3" type="audio/mpeg">
+    </audio> -->
     <video autoplay muted loop id="bg-video">
         <source src="assets/background-video.mp4" type="video/mp4">
         Your browser does not support HTML5 video.
     </video>
     <div id="bg-overlay"></div>
-
     <div class="main-container">
         <!-- LEFT CONTENT -->
         <main class="left-content">
-            <div class="left-scroll-container">
-                <!-- HOME -->
-                <section id="home" class="section">
-                    <h1>Hi, I'm
-                        <span class="typewriter" id="animated-name">
-                            <span class="typewriter-cursor"></span>
-                            Kaushal Vyas
-                        </span>
-                    </h1>
-                    <p class="subtitle">Army Ward • Blogger • Developer • Reader • Photographer • Traveller •
-                        <b>ENTJ-A</b></p>
-                    <p><i style="color: rgb(99, 99, 99);">updated on 04 July 2025.</i></p>
-                </section>
+            <!-- HOME -->
+            <section id="home" class="section">
+                <h1>Hi, I'm
+                    <span class="typewriter" id="animated-name">
+                        <span class="typewriter-cursor"></span>
+                        Kaushal Vyas
+                    </span>
+                </h1>
+                <p class="subtitle">Army Ward • Blogger • Developer • Reader • Photographer • Traveller • <b>ENTJ-A</b>
+                </p>
+                <p><i style="color: rgb(99, 99, 99);">updated on 01 July 2025.</i></p>
+            </section>
 
-                <!-- ABOUT -->
-                <section id="about" class="section">
-                    <h2>About Me</h2>
-                    <p>A passionate technophile, a bookworm, a wanderer, and a creator. When I'm not building things,
-                        I'm busy curating quotes, listening to LOTS of music, or chasing sunsets with my camera.</p><br>
-                    <p>With a blend of technical skills and creative vision, I approach problems with both logic and
-                        imagination (and lots of AI).</p>
-                </section>
+            <!-- ABOUT -->
+            <section id="about" class="section">
+                <h2>About Me</h2>
+                <p>A passionate technophile, a bookworm, a wanderer, and a creator. When I'm not building things,
+                    I'm busy curating quotes, listening to LOTS of music, or chasing sunsets with my camera.</p><br>
+                <p>With a blend of technical skills and creative vision, I approach problems with both logic and
+                    imagination (and lots of AI).</p>
 
-                <!-- EXPERIENCE -->
-                <section id="experience" class="section">
-                    <h2>Experience</h2>
-                    <div class="experience-timeline">
-                        <div class="experience-item">
-                            <div class="experience-header">
-                                <a href="https://www.msd.com/" target="_blank">
-                                    <h3>MSD [Merck & Co] - GCPA Intern</h3>
-                                </a>
-                                <span class="experience-date">June, 2025 - December 2025 [6 Months]</span>
+            </section>
+            <section id="education" class="section">
+                <h2>Education</h2>
+                <div class="education-timeline">
+                    <div class="education-item">
+                        <div class="education-header">
+                            <div class="education-icon">🎓</div>
+                            <div class="education-content">
+                                <h3 class="education-degree">Bachelor of Engineering in Computer Engineering</h3>
+                                <p class="education-institution">Army Institute of Technology, Pune</p>
+                                <p class="education-university">Savitribai Phule Pune University</p>
                             </div>
-                            <ul class="experience-contributions">
-                                <li><i>To be updated.</i></li>
-                            </ul>
-                            <div class="skills-acquired">
-                                <h4>Skills Acquired:</h4>
-                                <ul>
-                                    <li>Data Analysis</li>
-                                    <li>SQL</li>
-                                    <li>Python</li>
-                                    <li>Business Research</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="experience-item">
-                            <div class="experience-header">
-                                <a href="https://www.aitoss.club/" target="_blank">
-                                    <h3>AIT Open Source Software Club - Club Secretary</h3>
-                                </a>
-                                <span class="experience-date">July, 2024 - June 2025 [12 Months]</span>
-                            </div>
-                            <ul class="experience-contributions">
-                                <li> Conducted <b>India's Largest Student-Driven 24-Hr Hackathon Innerve</b>
-                                    (<i>www.innerve.tech</i>) for the Ninth time, with a Prize Pool of <b>12 Lakh
-                                        Rupees</b>, <b>10,000+ registrations</b> and <b>2,500+ submissions</b>. Secured
-                                    sponsorships from companies like <b>udChalo</b>, <b>Josh Software</b>,
-                                    <b>Cloudflare</b>, <b>NordVPN</b>, <b>Max Protein</b>, etc. <b>5,00.000+</b> Social
-                                    Media Impressions.
-                                </li>
-                                <li>
-                                    Led various flagship initiatives like <b>Spark</b> (Web-development classes),
-                                    <b>Replica</b> (Website-cloning competition), <b>Graphica</b> (8-hr Hackathon
-                                    exclusively for First Years), <b>FSoC</b> (Fresher's Season of Code - for
-                                    Open-Source
-                                    Contributions), and <b>De'Verse</b> (Week Long Development Competition for Second
-                                    and
-                                    Third Years), impacting <b>1000+ students</b>.
-                                </li>
-                                <li>
-                                    Organised the internal hackathon round of <b>Smart India Hackathon 2024</b>, and
-                                    managed
-                                    end-to-end execution of speaker sessions, tech mentorships, and collab with other
-                                    tech
-                                    clubs.
-                                </li>
-                            </ul>
-                            <div class="skills-acquired">
-                                <h4>Skills Acquired:</h4>
-                                <ul>
-                                    <li>Event Management</li>
-                                    <li>Sponsorship Acquisition</li>
-                                    <li>Public Relations</li>
-                                    <li>Leadership</li>
-                                    <li>Team Management</li>
-                                    <li>Logistics Management</li>
-                                    <li>Content Proofreading</li>
-                                    <li>Project Management</li>
-                                    <li>Technical Documentation</li>
-                                    <li>Web Development</li>
-                                    <li>Networking</li>
-                                    <li>Open-Source Contributions</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="experience-item">
-                            <div class="experience-header">
-                                <a href="https://www.thehouseofaster.com/" target="_blank">
-                                    <h3>The House of Aster - Content Research</h3>
-                                </a>
-                                <span class="experience-date">January, 2022 - April, 2022 [3 Months]</span>
-                            </div>
-                            <ul class="experience-contributions">
-                                <li>Collected client-specific data, analysed their requirements and produced consistent
-                                    and
-                                    attractive social-media posts.</li>
-                            </ul>
-                            <div class="skills-acquired">
-                                <h4>Skills Acquired:</h4>
-                                <ul>
-                                    <li>Content Research</li>
-                                    <li>Social Media Management</li>
-                                </ul>
+                            <div class="education-meta">
+                                <span class="education-duration">2022 - 2026</span>
+                                <span class="education-grade">CGPA: 8.66/10</span>
                             </div>
                         </div>
                     </div>
-                </section>
-
-                <!-- ACHIEVEMENTS -->
-                <section id="achievements" class="section">
-                    <h2>Achievements</h2>
-                    <p>My journey of accomplishments and milestones</p>
-                    <div id="achievements-container">
+                    <div class="education-item">
+                        <div class="education-header">
+                            <div class="education-icon">🎓</div>
+                            <div class="education-content">
+                                <h3 class="education-degree">Data Science Credit-Linked Course</h3>
+                                <p class="education-institution">Daksh Gurukul, Masai School</p>
+                                <p class="education-university">Indian Institute of Technology, Guwahati</p>
+                            </div>
+                            <div class="education-meta">
+                                <span class="education-duration">2025</span>
+                                <span class="education-grade">CGPA: 9.00/10</span>
+                            </div>
+                        </div>
                     </div>
-                </section>
+                    <div class="education-item">
+                        <div class="education-header">
+                            <div class="education-icon">📖</div>
+                            <div class="education-content">
+                                <h3 class="education-degree">Class 12<sup>th</sup> Board</h3>
+                                <p class="education-institution">Sharada Mandir School, Goa</p>
+                                <p class="education-university">Indian School Certificate (ISC) Board</p>
+                            </div>
+                            <div class="education-meta">
+                                <span class="education-duration">2021</span>
+                                <span class="education-grade">Score: 85.2%</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <!-- RESUME -->
-                <section id="resume" class="section">
-                    <h2>Resume</h2>
-                    <p><a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn">View Resume</a>
-                    </p>
+                    <div class="education-item">
+                        <div class="education-header">
+                            <div class="education-icon">📖</div>
+                            <div class="education-content">
+                                <h3 class="education-degree">Class 10<sup>th</sup> Board</h3>
+                                <p class="education-institution">Sharada Mandir School, Goa</p>
+                                <p class="education-university">Indian Council of Secondary Education (ICSE) Board</p>
+                            </div>
+                            <div class="education-meta">
+                                <span class="education-duration">2019</span>
+                                <span class="education-grade">Score: 92.6%</span>
+                            </div>
+                        </div>
+                    </div>
 
-                    <div class="resume-skills">
-                        <h3>Skills</h3>
-                        <ul class="resume-skills-list">
-                            <li><strong>Programming Languages:</strong> Python, Java, SQL, C++</li>
-                            <li><strong>Technologies/Frameworks:</strong> MySQL, MS Office, Google Suite, Power BI,
-                                NumPy,
-                                Pandas, Matplotlib, Scikit-Learn, HTML, CSS, JS, MongoDB</li>
-                            <li><strong>Developer Tools:</strong> VS Code, Eclipse, GitHub, Jupyter Notebook, MATLAB,
-                                Wolfram Alpha</li>
-                            <li><strong>Non Technical:</strong> Leadership, Teamwork, Communication, Public Speaking,
-                                Report
-                                Writing, Consumer Behavior Analysis, Strategic Planning, Data Interpretation,
-                                Multitasking,
-                                Decision-Making, Conflict Resolution, Stakeholder Engagement, Negotiations</li>
+                    <div class="education-item">
+                        <div class="education-header">
+                            <div class="education-icon">#️⃣</div>
+                            <div class="education-content">
+                                <h3 class="education-degree">Certificate in BlueJ</h3>
+                                <p class="education-institution">Manipal Institute of Computer Education</p>
+                                <p class="education-university">Government of Goa</p>
+                            </div>
+                            <div class="education-meta">
+                                <span class="education-duration">2017</span>
+                                <span class="education-grade">Score: 75%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-header">
+                            <div class="education-icon">🖥️</div>
+                            <div class="education-content">
+                                <h3 class="education-degree">Diploma in Office Computer Applications</h3>
+                                <p class="education-institution">Stenodac Commercial Training Institute</p>
+                                <p class="education-university">Government of Goa</p>
+                            </div>
+                            <div class="education-meta">
+                                <span class="education-duration">2016</span>
+                                <span class="education-grade">Score: 91%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-header">
+                            <div class="education-icon">✍️</div>
+                            <div class="education-content">
+                                <h3 class="education-degree">Diploma in Elementary English</h3>
+                                <p class="education-institution">Universal Institute of English Language</p>
+                                <p class="education-university">Government of Goa</p>
+                            </div>
+                            <div class="education-meta">
+                                <span class="education-duration">2016</span>
+                                <span class="education-grade">Score: 91.3%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-header">
+                            <div class="education-icon">🖥️</div>
+                            <div class="education-content">
+                                <h3 class="education-degree">Certificate in Internet Multimedia & Computer Typing</h3>
+                                <p class="education-institution">Stenodac Commercial Training Institute</p>
+                                <p class="education-university">Government of Goa</p>
+                            </div>
+                            <div class="education-meta">
+                                <span class="education-duration">2015</span>
+                                <span class="education-grade">80 wpm (current)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="experience" class="section">
+                <h2>Experience</h2>
+                <div class="experience-timeline">
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <a href="https://www.msd.com/" target="_blank">
+                                <h3>MSD [Merck & Co] - GCPA Intern</h3>
+                            </a>
+                            <span class="experience-date">June, 2025 - December 2025 [6 Months]</span>
+                        </div>
+                        <ul class="experience-contributions">
+                            <li><i>To be updated.</i></li>
                         </ul>
+                        <div class="skills-acquired">
+                            <h4>Skills Acquired:</h4>
+                            <ul>
+                                <li>Data Analysis</li>
+                                <li>SQL</li>
+                                <li>Python</li>
+                                <li>Business Research</li>
+                            </ul>
+                        </div>
                     </div>
-                </section>
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <a href="https://www.aitoss.club/" target="_blank">
+                                <h3>AIT Open Source Software Club - Club Secretary</h3>
+                            </a>
+                            <span class="experience-date">July, 2024 - June 2025 [12 Months]</span>
+                        </div>
+                        <ul class="experience-contributions">
+                            <li> Conducted <b>India's Largest Student-Driven 24-Hr Hackathon Innerve</b>
+                                (<i>www.innerve.tech</i>) for the Ninth time, with a Prize Pool of <b>12 Lakh
+                                    Rupees</b>, <b>10,000+ registrations</b> and <b>2,500+ submissions</b>. Secured
+                                sponsorships from companies like <b>udChalo</b>, <b>Josh Software</b>,
+                                <b>Cloudflare</b>, <b>NordVPN</b>, <b>Max Protein</b>, etc. <b>5,00.000+</b> Social
+                                Media Impressions.
+                            </li>
+                            <li>
+                                Led various flagship initiatives like <b>Spark</b> (Web-development classes),
+                                <b>Replica</b> (Website-cloning competition), <b>Graphica</b> (8-hr Hackathon
+                                exclusively for First Years), <b>FSoC</b> (Fresher's Season of Code - for Open-Source
+                                Contributions), and <b>De'Verse</b> (Week Long Development Competition for Second and
+                                Third Years), impacting <b>1000+ students</b>.
+                            </li>
+                            <li>
+                                Organised the internal hackathon round of <b>Smart India Hackathon 2024</b>, and managed
+                                end-to-end execution of speaker sessions, tech mentorships, and collab with other tech
+                                clubs.
+                            </li>
+                        </ul>
+                        <div class="skills-acquired">
+                            <h4>Skills Acquired:</h4>
+                            <ul>
+                                <li>Event Management</li>
+                                <li>Sponsorship Acquisition</li>
+                                <li>Public Relations</li>
+                                <li>Leadership</li>
+                                <li>Team Management</li>
+                                <li>Logistics Management</li>
+                                <li>Content Proofreading</li>
+                                <li>Project Management</li>
+                                <li>Technical Documentation</li>
+                                <li>Web Development</li>
+                                <li>Networking</li>
+                                <li>Open-Source Contributions</li>
+                            </ul>
+                        </div>
 
-                <!-- THREADS -->
-                <section id="threads" class="section">
-                    <h2>Threads (Book Quotes)</h2>
-                    <p><a href="https://docs.google.com/spreadsheets/d/1Lm2hqg017AvfPL7ahLytUpVWxfxmM3E4A22afV84vu8/"
-                            target="_blank" rel="noopener noreferrer" class="btn">Click Here to View My Book Reading
-                            List</a>
-                    <div id="threads-container">
-                        <p class="placeholder">My favorite book quotes will appear here soon...</p>
                     </div>
-                </section>
-            </div>
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <a href="https://www.thehouseofaster.com/" target="_blank">
+                                <h3>The House of Aster - Content Research</h3>
+                            </a>
+                            <span class="experience-date">January, 2022 - April, 2022 [3 Months]</span>
+                        </div>
+                        <ul class="experience-contributions">
+                            <li>Collected client-specific data, analysed their requirements and produced consistent and
+                                attractive social-media posts.</li>
+                        </ul>
+                        <div class="skills-acquired">
+                            <h4>Skills Acquired:</h4>
+                            <ul>
+                                <li>Content Research</li>
+                                <li>Social Media Management</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="achievements" class="section">
+                <h2>Achievements</h2>
+                <p>My journey of accomplishments and milestones</p> 
+                <div id="achievements-container">
+                </div>
+            </section>
+
+            <!-- RESUME -->
+            <section id="resume" class="section">
+                <h2>Resume</h2>
+                <p><a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn">View Resume</a>
+                </p>
+
+                <div class="resume-skills">
+                    <h3>Skills</h3>
+                    <ul class="resume-skills-list">
+                        <li><strong>Programming Languages:</strong> Python, Java, SQL, C++</li>
+                        <li><strong>Technologies/Frameworks:</strong> MySQL, MS Office, Google Suite, Power BI, NumPy,
+                            Pandas, Matplotlib, Scikit-Learn, HTML, CSS, JS, MongoDB</li>
+                        <li><strong>Developer Tools:</strong> VS Code, Eclipse, GitHub, Jupyter Notebook, MATLAB,
+                            Wolfram Alpha</li>
+                        <li><strong>Non Technical:</strong> Leadership, Teamwork, Communication, Public Speaking, Report
+                            Writing, Consumer Behavior Analysis, Strategic Planning, Data Interpretation, Multitasking,
+                            Decision-Making, Conflict Resolution, Stakeholder Engagement, Negotiations</li>
+                    </ul>
+                </div>
+
+            </section>
+
+            <!-- THREADS -->
+            <section id="threads" class="section">
+                <h2>Threads (Book Quotes)</h2>
+                <p><a href="https://docs.google.com/spreadsheets/d/1Lm2hqg017AvfPL7ahLytUpVWxfxmM3E4A22afV84vu8/"
+                        target="_blank" rel="noopener noreferrer" class="btn">Click Here to View My Book Reading
+                        List</a>
+                <div id="threads-container">
+                    <p class="placeholder">My favorite book quotes will appear here soon...</p>
+                </div>
+            </section>
+
+            <!-- CONTACT -->
+            <section id="contact" class="section">
+                <h2>Get In Touch</h2>
+
+                <form id="contact-form">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+
+                <div id="thank-you-message" style="display: none;">
+                    <h3>Message Received! 🎉</h3>
+                    <p>Thanks for reaching out. I'll get back to you soon.</p>
+                    <br>
+                    <button onclick="location.reload()" class="btn">Send Another</button>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/kaushal-vyas" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn">
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/kaushalvyasofficial" target="_blank" rel="noopener noreferrer"
+                        aria-label="GitHub">
+                        GitHub
+                    </a>
+                    <a href="https://instagram.com/kvyas.in" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram">
+                        Instagram
+                    </a>
+                    <a href="https://x.com/2ndlastbreath" target="_blank" rel="noopener noreferrer"
+                        aria-label="Twitter (now X)">
+                        Twitter
+                    </a>
+                    <a href="https://www.reddit.com/user/KaushalVyas/" target="_blank" rel="noopener noreferrer"
+                        aria-label="Reddit">
+                        Reddit
+                    </a>
+                    <a href="https://medium.com/@kaushal-vyas" target="_blank" rel="noopener noreferrer"
+                        aria-label="Medium">
+                        Medium
+                    </a>
+                    <a href="https://kaushalvyas.notion.site/d1e5cd6c8f50413d99aefa0b2b5f63bc?v=1c9dc5becea946fa9533e842f93b4bda&pvs=143"
+                        target="_blank" rel="noopener noreferrer" aria-label="Notion">
+                        Notion
+                    </a>
+                </div>
+            </section>
         </main>
 
-        <!-- RIGHT SIDE CONTENT -->
-        <aside class="right-content">
-            <!-- STICKY PHOTO -->
-            <div class="sticky-photo" aria-label="Portrait of Kaushal Vyas">
-                <img src="assets/images/me.jpeg" alt="Portrait of Kaushal Vyas" loading="eager" />
-            </div>
-
-            <!-- SCROLLABLE RIGHT CONTENT -->
-            <div class="right-scroll-container">
-                <!-- EDUCATION -->
-                <section id="education" class="section">
-                    <h2>Education</h2>
-                    <div class="education-timeline">
-                        <div class="education-item">
-                            <div class="education-header">
-                                <div class="education-icon">🎓</div>
-                                <div class="education-content">
-                                    <h3 class="education-degree">Bachelor of Engineering in Computer Engineering</h3>
-                                    <p class="education-institution">Army Institute of Technology, Pune</p>
-                                    <p class="education-university">Savitribai Phule Pune University</p>
-                                </div>
-                                <div class="education-meta">
-                                    <span class="education-duration">2022 - 2026</span>
-                                    <span class="education-grade">CGPA: 8.66/10</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="education-item">
-                            <div class="education-header">
-                                <div class="education-icon">🎓</div>
-                                <div class="education-content">
-                                    <h3 class="education-degree">Data Science Credit-Linked Course</h3>
-                                    <p class="education-institution">Daksh Gurukul, Masai School</p>
-                                    <p class="education-university">Indian Institute of Technology, Guwahati</p>
-                                </div>
-                                <div class="education-meta">
-                                    <span class="education-duration">2025</span>
-                                    <span class="education-grade">CGPA: 9.00/10</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="education-item">
-                            <div class="education-header">
-                                <div class="education-icon">📖</div>
-                                <div class="education-content">
-                                    <h3 class="education-degree">Class 12<sup>th</sup> Board</h3>
-                                    <p class="education-institution">Sharada Mandir School, Goa</p>
-                                    <p class="education-university">Indian School Certificate (ISC) Board</p>
-                                </div>
-                                <div class="education-meta">
-                                    <span class="education-duration">2021</span>
-                                    <span class="education-grade">Score: 85.2%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="education-item">
-                            <div class="education-header">
-                                <div class="education-icon">📖</div>
-                                <div class="education-content">
-                                    <h3 class="education-degree">Class 10<sup>th</sup> Board</h3>
-                                    <p class="education-institution">Sharada Mandir School, Goa</p>
-                                    <p class="education-university">Indian Council of Secondary Education (ICSE) Board
-                                    </p>
-                                </div>
-                                <div class="education-meta">
-                                    <span class="education-duration">2019</span>
-                                    <span class="education-grade">Score: 92.6%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="education-item">
-                            <div class="education-header">
-                                <div class="education-icon">#️⃣</div>
-                                <div class="education-content">
-                                    <h3 class="education-degree">Certificate in BlueJ</h3>
-                                    <p class="education-institution">Manipal Institute of Computer Education</p>
-                                    <p class="education-university">Government of Goa</p>
-                                </div>
-                                <div class="education-meta">
-                                    <span class="education-duration">2017</span>
-                                    <span class="education-grade">Score: 75%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="education-item">
-                            <div class="education-header">
-                                <div class="education-icon">🖥️</div>
-                                <div class="education-content">
-                                    <h3 class="education-degree">Diploma in Office Computer Applications</h3>
-                                    <p class="education-institution">Stenodac Commercial Training Institute</p>
-                                    <p class="education-university">Government of Goa</p>
-                                </div>
-                                <div class="education-meta">
-                                    <span class="education-duration">2016</span>
-                                    <span class="education-grade">Score: 91%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="education-item">
-                            <div class="education-header">
-                                <div class="education-icon">✍️</div>
-                                <div class="education-content">
-                                    <h3 class="education-degree">Diploma in Elementary English</h3>
-                                    <p class="education-institution">Universal Institute of English Language</p>
-                                    <p class="education-university">Government of Goa</p>
-                                </div>
-                                <div class="education-meta">
-                                    <span class="education-duration">2016</span>
-                                    <span class="education-grade">Score: 91.3%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="education-item">
-                            <div class="education-header">
-                                <div class="education-icon">🖥️</div>
-                                <div class="education-content">
-                                    <h3 class="education-degree">Certificate in Internet Multimedia & Computer Typing
-                                    </h3>
-                                    <p class="education-institution">Stenodac Commercial Training Institute</p>
-                                    <p class="education-university">Government of Goa</p>
-                                </div>
-                                <div class="education-meta">
-                                    <span class="education-duration">2015</span>
-                                    <span class="education-grade">80 wpm (current)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- CONTACT -->
-                <section id="contact" class="section">
-                    <h2>Get In Touch</h2>
-
-                    <form id="contact-form">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="Your Email" required>
-                        <textarea name="message" placeholder="Your Message" required></textarea>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-
-                    <div id="thank-you-message" style="display: none;">
-                        <h3>Message Received! 🎉</h3>
-                        <p>Thanks for reaching out. I'll get back to you soon.</p>
-                        <br>
-                        <button onclick="location.reload()" class="btn">Send Another</button>
-                    </div>
-
-                    <div class="social-links">
-                        <a href="https://linkedin.com/in/kaushal-vyas" target="_blank" rel="noopener noreferrer"
-                            aria-label="LinkedIn">
-                            LinkedIn
-                        </a>
-                        <a href="https://github.com/kaushalvyasofficial" target="_blank" rel="noopener noreferrer"
-                            aria-label="GitHub">
-                            GitHub
-                        </a>
-                        <a href="https://instagram.com/kvyas.in" target="_blank" rel="noopener noreferrer"
-                            aria-label="Instagram">
-                            Instagram
-                        </a>
-                        <a href="https://x.com/2ndlastbreath" target="_blank" rel="noopener noreferrer"
-                            aria-label="Twitter (now X)">
-                            Twitter
-                        </a>
-                        <a href="https://www.reddit.com/user/KaushalVyas/" target="_blank" rel="noopener noreferrer"
-                            aria-label="Reddit">
-                            Reddit
-                        </a>
-                        <a href="https://medium.com/@kaushal-vyas" target="_blank" rel="noopener noreferrer"
-                            aria-label="Medium">
-                            Medium
-                        </a>
-                        <a href="https://kaushalvyas.notion.site/d1e5cd6c8f50413d99aefa0b2b5f63bc?v=1c9dc5becea946fa9533e842f93b4bda&pvs=143"
-                            target="_blank" rel="noopener noreferrer" aria-label="Notion">
-                            Notion
-                        </a>
-                    </div>
-                </section>
-            </div>
+        <!-- RIGHT SIDE PHOTO -->
+        <aside class="right-photo" aria-label="Portrait of Kaushal Vyas">
+            <img src="assets/images/me.jpeg" alt="Portrait of Kaushal Vyas" loading="eager" />
         </aside>
     </div>
 
@@ -422,5 +408,13 @@
         <p>Email Me at <b>kaushalvyasofficial@gmail.com</b></p>
         <p>&copy; <span id="current-year">2025</span> Kaushal Vyas. Made with ☕ and ❤️</p>
     </footer>
+    <!-- <script>
+        const unmuteButton = document.getElementById('unmuteButton');
+        const bgMusic = document.getElementById('bgMusic');
+
+        unmuteButton.addEventListener('click', () => {
+            bgMusic.play();
+            unmuteButton.style.display = 'none';
+        });
+    </script> -->
 </body>
-</html>
