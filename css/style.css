@@ -579,7 +579,10 @@ textarea:focus {
     min-height: auto;
     height: auto;
   }
-
+  
+  #bg-video {
+    object-fit:fill;
+  }
   .book-card {
     height: auto;
     /* Allow flexible height on mobile */
@@ -762,7 +765,10 @@ footer {
     border-radius: var(--border-radius);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
-
+  
+  #bg-video {
+    object-fit:fill;
+  }
   .main-container {
     flex-direction: column;
     gap: 30px;
@@ -787,6 +793,9 @@ footer {
     align-content: center;
   }
 
+  #bg-video {
+    object-fit:fill;
+  }
   #bg-overlay {
     position: fixed;
     top: 0;
@@ -857,6 +866,9 @@ footer {
     gap: 8px;
   }
 
+  #bg-video {
+    object-fit:fill;
+  }
   .section {
     padding: 50px 10px;
   }
@@ -1125,6 +1137,9 @@ footer {
     left: 30px;
   }
 
+  #bg-video {
+    object-fit:fill;
+  }
   .achievement-item {
     justify-content: flex-start !important;
     margin-bottom: 30px;
@@ -1178,6 +1193,9 @@ footer {
     left: 20px;
   }
 
+  #bg-video {
+    object-fit:fill;
+  }
   .achievement-item::before {
     left: 20px;
     width: 16px;
@@ -1766,6 +1784,10 @@ footer {
 
   .brand-dot {
     animation: none;
+  }
+  
+  #bg-video {
+    object-fit:fill;
   }
 }
 
