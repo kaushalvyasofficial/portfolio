@@ -1,5 +1,20 @@
 [
   {
+    "bookName": "Wings of Fire",
+    "coverImage": "./assets/images/book-covers/WingsOfFire.jpg",
+    "author": "A. P. J. Abdul Kalam",
+    "publishYear": "1999",
+    "genre": "Autobiography",
+    "dateOfCompletion": "2025-08-24",
+    "quotes":[
+      "Let not thy winged days be spent in vain. When once gone no gold can buy them back again.",
+      "When the student is ready, the teacher will appear.",
+      "The best way to win is to not need to win.",
+      "Bread baked without love is a bitter bread that feeds but half a man's hunger.",
+      "It was in the handling of the crises that arose a consequence that talent could often be revealed."
+    ]
+  },
+  {
     "bookName": "Things No One Taught Us About Love",
     "coverImage": "./assets/images/book-covers/ThingsNoOneTaughtUsAboutLove.jpg",
     "author": "Vex King",
