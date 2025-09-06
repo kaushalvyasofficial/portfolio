@@ -15,6 +15,19 @@
     ]
   },
   {
+    "bookName": "Thank You For Leaving",
+    "coverImage": "./assets/images/book-covers/ThankYouForLeaving.jpg",
+    "author": "Rithvik Singh",
+    "publishYear": "19632025",
+    "genre": "Poetry",
+    "dateOfCompletion": "2025-08-26",
+    "quotes": [
+      "The best way to win is to not need to win.",
+      "Bread baked without love is a bitter bread that feeds but half a man's hunger.",
+      "It was in the handling of the crises that arose a consequence that talent could often be revealed."
+    ]
+  },
+  {
     "bookName": "Things No One Taught Us About Love",
     "coverImage": "./assets/images/book-covers/ThingsNoOneTaughtUsAboutLove.jpg",
     "author": "Vex King",
