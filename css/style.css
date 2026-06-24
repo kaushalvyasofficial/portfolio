@@ -426,7 +426,7 @@ img {
 #heroPortrait {
     position: absolute;
     right: 9%;
-    top: 50%;
+    top: 30%;
     transform: translateY(-50%);
     width: 380px;
     height: 380px;
