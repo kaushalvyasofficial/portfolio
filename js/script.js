@@ -1,517 +1,458 @@
-// ==================== ON PAGE LOAD ====================
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functions
-    initializeNavbar();
-    typeWriterName();
-    loadQuotes();
+/* ============================================================
+   Kaushal Vyas — Portfolio  ·  interactions + dynamic content
+   ============================================================ */
+
+const EMAIL = "kaushalvyasofficial@gmail.com";
+const TEAL = "#2FB89A";
+const GOLD = "#E3A53A";
+
+// Tiny monochrome line icons (inherit currentColor) for the reading-card meta.
+const ICON_CAL = '<svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 9.5h18"/></svg>';
+const ICON_CHECK = '<svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.4 2.4 4.6-4.8"/></svg>';
+
+document.addEventListener("DOMContentLoaded", () => {
+    initStars();
+    initNav();
+    initMobileMenu();
+    initReveal();
+    initHeroEntrance();
+    initContactForm();
+    updateYear();
     loadAchievements();
-    updateCurrentYear();
+    loadBooks();
 });
 
-// ==================== CONTACT FORM HANDLER ====================
-document.getElementById("contact-form").addEventListener("submit", async function (e) {
-    e.preventDefault();
+/* ---------- small helpers ---------- */
+function escapeHtml(str) {
+    return String(str == null ? "" : str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+}
 
-    const form = e.target;
-    const btn = form.querySelector("button");
-    const thankYou = document.getElementById("thank-you-message");
+function prefersReducedMotion() {
+    return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
 
-    btn.disabled = true;
-    btn.textContent = "Sending...";
-
+function formatDate(dateString, longMonth) {
     try {
-        await fetch("https://formsubmit.co/ajax/kaushalvyasofficial@gmail.com", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({
-                name: form.name.value,
-                email: form.email.value,
-                message: form.message.value,
-                _subject: "New Portfolio Message"
-            })
+        const d = new Date(dateString);
+        if (isNaN(d)) return dateString;
+        return d.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: longMonth ? "long" : "short",
+            day: "numeric"
         });
-
-        form.style.display = "none";
-        thankYou.style.display = "block";
-
-    } catch (error) {
-        btn.textContent = "Failed - Try Again";
-        btn.disabled = false;
-        alert("Message failed to send. Please email me directly at kaushalvyasofficial@gmail.com");
-    }
-});
-
-// ==================== TYPEWRITER NAME ANIMATION ====================
-function typeWriterName() {
-    const name = "Kaushal Vyas";
-    const letters = [
-        { char: "K", class: "k" },
-        { char: "a", class: "a" },
-        { char: "u", class: "u" },
-        { char: "s", class: "s" },
-        { char: "h", class: "h" },
-        { char: "a", class: "a" },
-        { char: "l", class: "l" },
-        { char: " ", class: "space" },
-        { char: "V", class: "v" },
-        { char: "y", class: "y" },
-        { char: "a", class: "a2" },
-        { char: "s", class: "s2" }
-    ];
-
-    const nameElement = document.getElementById("animated-name");
-    if (!nameElement) return; // Safety check
-
-    nameElement.innerHTML = "";
-
-    let i = 0;
-    const speed = 150;
-
-    function type() {
-        if (i < letters.length) {
-            const span = document.createElement("span");
-            span.className = letters[i].class;
-            span.textContent = letters[i].char;
-            nameElement.appendChild(span);
-            i++;
-            setTimeout(type, speed);
-        } else {
-            // Remove cursor after typing is complete
-            const cursor = nameElement.querySelector('.typewriter-cursor');
-            if (cursor) cursor.style.display = 'none';
-        }
-    }
-
-    setTimeout(type, 1500); // Initial delay
-}
-
-// ==================== LOAD QUOTES FROM LOCAL JSON ====================
-async function loadQuotes() {
-    const container = document.getElementById("threads-container");
-    if (!container) return; // Safety check
-
-    try {
-        // Show loading state
-        container.innerHTML = '<div class="loading-quotes">Loading book quotes...</div>';
-
-        const response = await fetch("./assets/books.json");
-        if (!response.ok) throw new Error("Failed to fetch quotes from books.json");
-
-        const data = await response.json();
-
-        // Handle both single book object and array of books
-        const books = Array.isArray(data) ? data : [data];
-
-        if (!books || books.length === 0) {
-            container.innerHTML = "<p>No quotes found in books.json file.</p>";
-            return;
-        }
-
-        // Generate book cards HTML
-        container.innerHTML = books.map((book, index) => {
-
-            const allQuotes = Array.isArray(book.quotes) ? book.quotes : ["No quotes available"];
-            const firstQuote = allQuotes[0] || "No quotes available";
-            return `
-  <div class="book-card" data-book-index="${index}">
-    <div class="book-preview" onclick="toggleBookQuotes(${index})">
-      <div class="book-cover">
-        <img src="${book.coverImage || './assets/placeholder-book.jpg'}" alt="${book.bookName || book.book || 'Unknown Title'}" class="book-image">
-      </div>
-      <div class="book-content">
-        <div class="book-header">
-          <h3 class="book-title">${book.bookName || book.book || 'Unknown Title'}</h3>
-          <p class="book-author">By ${book.author || 'Unknown Author'}</p>
-        </div>
-        <div class="featured-quote">
-          ${truncateText(firstQuote, 120)}
-        </div>
-        <div class="book-meta">
-          ${book.publishYear ? `<span class="meta-item">
-            <div class="meta-icon">📅</div>
-            <div class="meta-label">Published On</div>
-            <div class="meta-value">${book.publishYear}</div>
-          </span>` : ''}
-          ${book.dateOfCompletion ? `<span class="meta-item">
-            <div class="meta-icon">✅</div>
-            <div class="meta-label">Completed on</div>
-            <div class="meta-value">${formatDate(book.dateOfCompletion)}</div>
-          </span>` : ''}
-          ${book.genre ? `<span class="meta-item">
-            <div class="meta-icon">📚</div>
-            <div class="meta-label">Genre</div>
-            <div class="meta-value">${book.genre}</div>
-          </span>` : ''}
-          
-        </div>
-      </div>
-      <div class="expand-indicator">
-        <span class="expand-arrow">▼</span>
-      </div>
-    </div>
-    
-    <div class="quotes-container">
-      <div class="quotes-list">
-        ${allQuotes.map((quote, qIndex) => `
-          <div class="quote-item">
-            <div class="quote-number">${qIndex + 1}.</div>
-            <div class="quote-text">${quote}</div>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-  </div>
-`;
-        }).join('');
-    } catch (error) {
-        console.error("Error loading quotes:", error);
-        container.innerHTML = `
-      <div class="error-message">
-        <p>❌ Failed to load quotes from books.json. Please check if the file exists in the assets folder.</p>
-        <button onclick="loadQuotes()" class="btn" style="margin-top: 10px;">Retry</button>
-      </div>
-    `;
-    }
-}
-
-// ==================== TOGGLE BOOK QUOTES EXPANSION ====================
-function toggleBookQuotes(bookIndex) {
-    const bookCard = document.querySelector(`[data-book-index="${bookIndex}"]`);
-    if (!bookCard) return;
-
-    const isExpanded = bookCard.classList.contains('expanded');
-    const arrow = bookCard.querySelector('.expand-arrow');
-
-    // Close all other expanded cards first
-    document.querySelectorAll('.book-card.expanded').forEach(card => {
-        if (card !== bookCard) {
-            card.classList.remove('expanded');
-            const otherArrow = card.querySelector('.expand-arrow');
-            if (otherArrow) otherArrow.textContent = '▼';
-        }
-    });
-
-    // Toggle current card
-    if (isExpanded) {
-        bookCard.classList.remove('expanded');
-        if (arrow) arrow.textContent = '▼';
-    } else {
-        bookCard.classList.add('expanded');
-        if (arrow) arrow.textContent = '▲';
-    }
-}
-
-// ==================== LOAD ACHIEVEMENTS ====================
-async function loadAchievements() {
-    const container = document.getElementById("achievements-container");
-    if (!container) return;
-
-    try {
-        // Show loading state
-        container.innerHTML = '<div class="timeline"><div class="loading-achievements">Loading achievements...</div></div>';
-
-        const response = await fetch("./assets/achievements.json");
-        if (!response.ok) throw new Error("Failed to fetch achievements");
-
-        const achievements = await response.json();
-
-        if (!achievements || achievements.length === 0) {
-            container.innerHTML = '<div class="error-achievements">No achievements found.</div>';
-            return;
-        }
-
-        // Sort achievements by date (newest first)
-        const sortedAchievements = achievements.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-        // Generate timeline HTML
-        const timelineHTML = `
-            <div class="timeline">
-                ${sortedAchievements.map((achievement, index) => `
-                    <div class="achievement-item" data-aos="fade-up" data-aos-delay="${index * 100}">
-                        <div class="achievement-content">
-                            <div class="achievement-header">
-                                <div class="achievement-icon">${achievement.icon || '🏆'}</div>
-                                <div class="achievement-title-section">
-                                    <h3 class="achievement-title">${achievement.title}</h3>
-                                    <p class="achievement-date">${formatAchievementDate(achievement.date)}</p>
-                                </div>
-                                <div class="achievement-rating">
-                                    ${generateStarRating(achievement.rating)}
-                                </div>
-                            </div>
-                            
-                            <p class="achievement-description">${achievement.description}</p>
-                            
-                            <div class="achievement-footer">
-                                <span class="achievement-category">${achievement.category || 'Achievement'}</span>
-                                ${achievement.proofLink && achievement.proofLink !== '#' ? `
-                                    <a href="${achievement.proofLink}" target="_blank" rel="noopener noreferrer" class="achievement-proof">
-                                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                            <polyline points="15,3 21,3 21,9"/>
-                                            <line x1="10" y1="14" x2="21" y2="3"/>
-                                        </svg>
-                                        View Proof
-                                    </a>
-                                ` : ''}
-                            </div>
-                        </div>
-                    </div>
-                `).join('')}
-            </div>
-        `;
-
-        container.innerHTML = timelineHTML;
-
-    } catch (error) {
-        console.error("Error loading achievements:", error);
-        container.innerHTML = `
-            <div class="error-achievements">
-                <p>❌ Failed to load achievements. Please check if achievements.json exists in the assets folder.</p>
-                <button onclick="loadAchievements()" class="btn" style="margin-top: 15px;">Retry</button>
-            </div>
-        `;
-    }
-}
-
-// ==================== UTILITY FUNCTIONS ====================
-function truncateText(text, maxLength) {
-    if (!text) return '';
-    if (text.length <= maxLength) return text;
-
-    // Find the last space before maxLength to avoid cutting words
-    const truncated = text.substr(0, maxLength);
-    const lastSpace = truncated.lastIndexOf(' ');
-
-    return (lastSpace > 0 ? truncated.substr(0, lastSpace) : truncated) + '...';
-}
-
-function formatDate(dateString) {
-    try {
-        const date = new Date(dateString);
-        return date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric'
-        });
-    } catch (error) {
-        return dateString; // Return original if parsing fails
-    }
-}
-
-function generateStarRating(rating) {
-    const maxStars = 5;
-    let starsHTML = '';
-
-    for (let i = 1; i <= maxStars; i++) {
-        if (i <= rating) {
-            starsHTML += '<span class="star">★</span>';
-        } else {
-            starsHTML += '<span class="star empty">★</span>';
-        }
-    }
-
-    return starsHTML;
-}
-
-function formatAchievementDate(dateString) {
-    try {
-        const date = new Date(dateString);
-        return date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-    } catch (error) {
+    } catch (e) {
         return dateString;
     }
 }
 
-function updateCurrentYear() {
-    const yearElement = document.getElementById('current-year');
-    if (yearElement) {
-        yearElement.textContent = new Date().getFullYear();
+/* ============ ANIMATED STARFIELD ============ */
+function initStars() {
+    const cv = document.getElementById("stars");
+    if (!cv) return;
+    const ctx = cv.getContext("2d");
+    let w, h, stars;
+
+    const make = () => {
+        w = cv.width = window.innerWidth;
+        h = cv.height = window.innerHeight;
+        const n = Math.min(180, Math.floor((w * h) / 9000));
+        stars = Array.from({ length: n }, () => ({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            r: Math.random() * 1.3 + 0.2,
+            a: Math.random() * 0.6 + 0.15,
+            tw: Math.random() * 0.02 + 0.004,
+            vy: Math.random() * 0.12 + 0.02,
+            c: Math.random() > 0.78 ? "47,184,160" : (Math.random() > 0.6 ? "227,165,58" : "255,255,255")
+        }));
+    };
+    make();
+    window.addEventListener("resize", make);
+
+    if (prefersReducedMotion()) {
+        // draw a single static frame
+        for (const s of stars) {
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(" + s.c + "," + s.a + ")";
+            ctx.fill();
+        }
+        return;
+    }
+
+    let t = 0;
+    const draw = () => {
+        ctx.clearRect(0, 0, w, h);
+        t += 0.01;
+        for (const s of stars) {
+            s.y += s.vy;
+            if (s.y > h) s.y = 0;
+            const a = s.a + Math.sin(t + s.x) * s.tw * 10;
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(" + s.c + "," + Math.max(0.05, a) + ")";
+            ctx.fill();
+        }
+        requestAnimationFrame(draw);
+    };
+    draw();
+}
+
+/* ============ NAV: scroll state, progress bar, active link ============ */
+function initNav() {
+    const nav = document.getElementById("nav");
+    const prog = document.getElementById("progress");
+    const navlinks = Array.from(document.querySelectorAll("[data-navlink]"));
+    const sections = navlinks
+        .map(a => document.querySelector(a.getAttribute("href")))
+        .filter(Boolean);
+
+    const onScroll = () => {
+        const sc = window.scrollY;
+        if (nav) nav.classList.toggle("scrolled", sc > 40);
+        if (prog) {
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            prog.style.transform = "scaleX(" + (docH > 0 ? sc / docH : 0) + ")";
+        }
+        // active link
+        const pos = sc + window.innerHeight * 0.32;
+        let activeId = null;
+        for (const sec of sections) {
+            if (pos >= sec.offsetTop) activeId = sec.id;
+        }
+        navlinks.forEach(a => {
+            a.classList.toggle("active", a.getAttribute("href") === "#" + activeId);
+        });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+}
+
+/* ============ MOBILE MENU ============ */
+function initMobileMenu() {
+    const burger = document.getElementById("burger");
+    const menu = document.getElementById("mobileMenu");
+    if (!burger || !menu) return;
+
+    const setMenu = (open) => {
+        menu.classList.toggle("open", open);
+        burger.textContent = open ? "CLOSE" : "MENU";
+        document.body.style.overflow = open ? "hidden" : "";
+    };
+
+    burger.addEventListener("click", () => setMenu(!menu.classList.contains("open")));
+    menu.querySelectorAll("[data-mlink]").forEach(a =>
+        a.addEventListener("click", () => setMenu(false))
+    );
+    document.addEventListener("keydown", e => {
+        if (e.key === "Escape") setMenu(false);
+    });
+}
+
+/* ============ REVEAL ON SCROLL + counters + rings ============ */
+function initReveal() {
+    const reduced = prefersReducedMotion();
+
+    const revealEls = document.querySelectorAll("[data-reveal]");
+    const staggerEls = document.querySelectorAll("[data-stagger]");
+
+    if (reduced || !("IntersectionObserver" in window)) {
+        revealEls.forEach(el => el.classList.add("in"));
+        staggerEls.forEach(group => group.classList.add("in"));
+        document.querySelectorAll(".cnum").forEach(el => setCounterFinal(el));
+        document.querySelectorAll("[data-ring]").forEach(el => setRingFinal(el));
+        return;
+    }
+
+    const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+
+            if (el.hasAttribute("data-stagger")) {
+                Array.from(el.children).forEach((child, i) => {
+                    child.style.transitionDelay = (i * 0.08) + "s";
+                });
+                el.classList.add("in");
+            } else {
+                el.classList.add("in");
+            }
+
+            el.querySelectorAll && el.querySelectorAll(".cnum").forEach(animateCounter);
+            el.querySelectorAll && el.querySelectorAll("[data-ring]").forEach(animateRing);
+
+            obs.unobserve(el);
+        });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(el => io.observe(el));
+    staggerEls.forEach(el => io.observe(el));
+}
+
+function setCounterFinal(el) {
+    const target = parseFloat(el.dataset.count || "0");
+    const dec = parseInt(el.dataset.dec || "0", 10);
+    el.textContent = (el.dataset.prefix || "") + target.toFixed(dec) + (el.dataset.suffix || "");
+}
+
+function animateCounter(el) {
+    if (el.dataset.done) return;
+    el.dataset.done = "1";
+    const target = parseFloat(el.dataset.count || "0");
+    const dec = parseInt(el.dataset.dec || "0", 10);
+    const pre = el.dataset.prefix || "";
+    const suf = el.dataset.suffix || "";
+    const dur = 1600;
+    const start = performance.now();
+    const ease = t => 1 - Math.pow(1 - t, 3);
+    const step = now => {
+        const p = Math.min(1, (now - start) / dur);
+        el.textContent = pre + (target * ease(p)).toFixed(dec) + suf;
+        if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+}
+
+function setRingFinal(el) {
+    const pct = parseFloat(el.dataset.pct || "0");
+    const col = el.dataset.accent || "#2FB89A";
+    el.style.background = "conic-gradient(" + col + " 0% " + pct + "%, rgba(255,255,255,.07) " + pct + "% 100%)";
+}
+
+function animateRing(el) {
+    if (el.dataset.done) return;
+    el.dataset.done = "1";
+    const pct = parseFloat(el.dataset.pct || "0");
+    const col = el.dataset.accent || "#2FB89A";
+    const dur = 1400;
+    const start = performance.now();
+    const ease = t => 1 - Math.pow(1 - t, 3);
+    const step = now => {
+        const p = Math.min(1, (now - start) / dur);
+        const v = pct * ease(p);
+        el.style.background = "conic-gradient(" + col + " 0% " + v + "%, rgba(255,255,255,.07) " + v + "% 100%)";
+        if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+}
+
+/* ============ HERO ENTRANCE ============ */
+function initHeroEntrance() {
+    const els = document.querySelectorAll("#heroText .reveal");
+    if (prefersReducedMotion()) {
+        els.forEach(el => el.classList.add("in"));
+        return;
+    }
+    els.forEach((el, i) => {
+        el.style.transitionDelay = (0.15 + i * 0.12) + "s";
+        requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("in")));
+    });
+}
+
+/* ============ CONTACT FORM (FormSubmit.co) ============ */
+function initContactForm() {
+    const form = document.getElementById("contactForm");
+    if (!form) return;
+    const btn = document.getElementById("sendBtn");
+
+    form.addEventListener("submit", async e => {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+        const original = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = "Sending…";
+
+        // Read via FormData — form.name would resolve to HTMLFormElement.name, not the input.
+        const data = new FormData(form);
+        try {
+            const res = await fetch("https://formsubmit.co/ajax/" + EMAIL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json", "Accept": "application/json" },
+                body: JSON.stringify({
+                    name: data.get("name"),
+                    email: data.get("email"),
+                    message: data.get("message"),
+                    _subject: "New Portfolio Message"
+                })
+            });
+            if (!res.ok) throw new Error("send failed");
+
+            form.reset();
+            btn.textContent = "Thanks — I'll be in touch ✓";
+            btn.style.background = "#E3A53A";
+            setTimeout(() => {
+                btn.textContent = original;
+                btn.style.background = "";
+                btn.disabled = false;
+            }, 3500);
+        } catch (err) {
+            btn.textContent = "Failed — email me directly";
+            btn.style.background = "";
+            btn.disabled = false;
+            setTimeout(() => { btn.textContent = original; }, 3500);
+        }
+    });
+}
+
+/* ============ FOOTER YEAR ============ */
+function updateYear() {
+    const y = document.getElementById("current-year");
+    if (y) y.textContent = new Date().getFullYear();
+}
+
+/* ============ ACHIEVEMENTS (achievements.json) ============ */
+async function loadAchievements() {
+    const grid = document.getElementById("achievements-grid");
+    if (!grid) return;
+    grid.innerHTML = '<div class="loading">Loading achievements…</div>';
+
+    try {
+        const res = await fetch("./assets/achievements.json");
+        if (!res.ok) throw new Error("fetch failed");
+        const list = await res.json();
+        if (!Array.isArray(list) || !list.length) {
+            grid.innerHTML = '<div class="loading">No achievements yet.</div>';
+            return;
+        }
+
+        const sorted = list.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        grid.innerHTML = sorted.map((a, i) => {
+            const blob = i % 2 ? "teal" : "gold";
+            const tint = i % 2 ? TEAL : GOLD;
+            const cat = escapeHtml((a.category || "Achievement").toUpperCase());
+            const proof = a.proofLink && a.proofLink !== "#"
+                ? `<a class="ach-proof" href="${escapeHtml(a.proofLink)}" target="_blank" rel="noopener noreferrer">View proof ↗</a>`
+                : "";
+            return `
+        <article class="ach-card" data-rowcard>
+          <div class="ach-blob ${blob}"></div>
+          <div class="ach-top">
+            <span class="ach-cat">${cat}</span>
+            <span class="ach-stars">${stars(a.rating)}</span>
+          </div>
+          <h3 class="ach-title"><span class="ach-icon emoji" style="--tint:${tint}">${escapeHtml(a.icon || "🏆")}</span>${escapeHtml(a.title)}</h3>
+          <div class="ach-date">${formatDate(a.date, true)}</div>
+          <p class="ach-desc">${escapeHtml(a.description)}</p>
+          ${proof}
+        </article>`;
+        }).join("");
+    } catch (err) {
+        console.error("achievements:", err);
+        grid.innerHTML = `
+      <div class="error-box">
+        <p>Couldn't load achievements.</p>
+        <button class="btn btn-solid" onclick="loadAchievements()">Retry</button>
+      </div>`;
     }
 }
 
-// ==================== NAVBAR FUNCTIONALITY ====================
-function initializeNavbar() {
-    const navbar = document.getElementById('navbar');
-    const mobileToggle = document.getElementById('mobile-toggle');
-    const mobileOverlay = document.getElementById('mobile-overlay');
-    const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
-    const sections = document.querySelectorAll('section[id]');
-
-    let lastScrollTop = 0;
-    let isMobile = window.innerWidth <= 768;
-
-    // ========== SCROLL PROGRESS FUNCTIONALITY ==========
-    function updateScrollProgress() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        
-        if (navbar) {
-            navbar.style.setProperty('--scroll-progress', `${scrollPercent}%`);
-        }
+function stars(rating) {
+    const r = Math.max(0, Math.min(5, parseInt(rating, 10) || 0));
+    let out = "";
+    for (let i = 1; i <= 5; i++) {
+        out += i <= r ? "★" : '<span class="empty">★</span>';
     }
+    return out;
+}
 
-    // ========== NAVBAR SCROLL EFFECTS ==========
-    function handleNavbarScroll() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+/* ============ READING / BOOKS (books.json) ============ */
+async function loadBooks() {
+    const grid = document.getElementById("reading-grid");
+    if (!grid) return;
+    grid.innerHTML = '<div class="loading">Loading book quotes…</div>';
 
-        if (!navbar) return;
-
-        // Add scrolled class when scrolled down
-        if (scrollTop > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+    try {
+        const res = await fetch("./assets/books.json");
+        if (!res.ok) throw new Error("fetch failed");
+        const data = await res.json();
+        const books = Array.isArray(data) ? data : [data];
+        if (!books.length) {
+            grid.innerHTML = '<div class="loading">No books yet.</div>';
+            return;
         }
 
-        // Hide/show navbar on scroll (only on mobile)
-        if (isMobile) {
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
-                navbar.classList.add('hide');
-                navbar.classList.remove('show');
-            } else {
-                navbar.classList.remove('hide');
-                navbar.classList.add('show');
-            }
-        }
+        grid.innerHTML = books.map((book, i) => {
+            const accent = i % 2 ? "gold" : "teal";
+            const quotes = Array.isArray(book.quotes) ? book.quotes : [];
+            const featured = quotes[0] || "No quotes saved yet.";
+            const title = escapeHtml(book.bookName || book.book || "Unknown Title");
+            const genre = escapeHtml((book.genre || "").split("/")[0].trim() || "Book");
+            const cover = escapeHtml(book.coverImage || "./assets/images/tab.png");
 
-        lastScrollTop = scrollTop;
+            const meta = [];
+            if (book.publishYear) meta.push(ICON_CAL + escapeHtml(book.publishYear));
+            if (book.dateOfCompletion) meta.push(ICON_CHECK + formatDate(book.dateOfCompletion));
+            meta.push(quotes.length + " quote" + (quotes.length === 1 ? "" : "s"));
+
+            const quotesHtml = quotes.map((q, qi) => `
+        <div class="quote-item">
+          <span class="quote-num">${qi + 1}.</span>
+          <span class="quote-text">${escapeHtml(q)}</span>
+        </div>`).join("");
+
+            return `
+        <article class="book-card" data-book-index="${i}">
+          <div class="book-main" role="button" tabindex="0" aria-expanded="false">
+            <div class="book-cover"><img src="${cover}" alt="${title} cover" loading="lazy"></div>
+            <div class="book-body">
+              <div class="book-genre ${accent}">${genre}</div>
+              <h3 class="book-title">${title}</h3>
+              <div class="book-author">${escapeHtml(book.author || "Unknown Author")}</div>
+              <p class="book-quote ${accent}">${escapeHtml(featured)}</p>
+              <div class="book-foot">
+                ${meta.map(m => `<span>${m}</span>`).join('<span class="dot">•</span>')}
+                <span class="book-toggle">Read all ▾</span>
+              </div>
+            </div>
+          </div>
+          <div class="book-quotes">
+            <div class="book-quotes-inner">${quotesHtml}</div>
+          </div>
+        </article>`;
+        }).join("");
+
+        wireBookToggles(grid);
+    } catch (err) {
+        console.error("books:", err);
+        grid.innerHTML = `
+      <div class="error-box">
+        <p>Couldn't load book quotes.</p>
+        <button class="btn btn-solid" onclick="loadBooks()">Retry</button>
+      </div>`;
     }
+}
 
-    // ========== MOBILE MENU FUNCTIONALITY ==========
-    function toggleMobileMenu() {
-        if (mobileToggle && mobileOverlay) {
-            mobileToggle.classList.toggle('active');
-            mobileOverlay.classList.toggle('active');
-            document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : '';
-        }
-    }
+function wireBookToggles(grid) {
+    const toggle = card => {
+        const open = card.classList.toggle("expanded");
+        const main = card.querySelector(".book-main");
+        const label = card.querySelector(".book-toggle");
+        if (main) main.setAttribute("aria-expanded", open ? "true" : "false");
+        if (label) label.textContent = open ? "Hide ▴" : "Read all ▾";
+    };
 
-    function closeMobileMenu() {
-        if (mobileToggle && mobileOverlay) {
-            mobileToggle.classList.remove('active');
-            mobileOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    }
-
-    // ========== ACTIVE LINK FUNCTIONALITY ==========
-    function updateActiveLink() {
-        const scrollPos = window.pageYOffset + 100;
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-
-            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-        });
-    }
-
-    // ========== SCROLL TO SECTION ==========
-    function scrollToSection(event) {
-        event.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-
-        if (!targetSection) return;
-
-        // Calculate offset for navbar
-        const navbarHeight = navbar ? navbar.offsetHeight : 80;
-        const targetOffset = targetSection.offsetTop - navbarHeight - 20;
-
-        window.scrollTo({
-            top: targetOffset,
-            behavior: 'smooth'
-        });
-
-        // Close mobile menu if open
-        closeMobileMenu();
-
-        // Update active link
-        navLinks.forEach(link => link.classList.remove('active'));
-        this.classList.add('active');
-    }
-
-    // ========== SETUP EVENT LISTENERS ==========
-    function setupEventListeners() {
-        // Mobile menu toggle
-        if (mobileToggle) {
-            mobileToggle.addEventListener('click', toggleMobileMenu);
-        }
-
-        // Close mobile menu when clicking overlay
-        if (mobileOverlay) {
-            mobileOverlay.addEventListener('click', function(e) {
-                if (e.target === mobileOverlay) {
-                    closeMobileMenu();
-                }
-            });
-        }
-
-        // Close mobile menu when clicking a mobile nav link
-        document.querySelectorAll('.mobile-nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                scrollToSection.call(this, e);
-                closeMobileMenu();
-            });
-        });
-
-        // Desktop navigation links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', scrollToSection);
-        });
-
-        // Scroll event listener
-        window.addEventListener('scroll', function() {
-            updateScrollProgress();
-            handleNavbarScroll();
-            updateActiveLink();
-        });
-
-        // Window resize handler
-        window.addEventListener('resize', function() {
-            isMobile = window.innerWidth <= 768;
-            
-            // Close mobile menu if switching to desktop
-            if (!isMobile) {
-                closeMobileMenu();
+    grid.querySelectorAll(".book-main").forEach(main => {
+        const card = main.closest(".book-card");
+        main.addEventListener("click", () => toggle(card));
+        main.addEventListener("keydown", e => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                toggle(card);
             }
         });
+    });
 
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            // ESC key closes mobile menu and expanded cards
-            if (e.key === 'Escape') {
-                closeMobileMenu();
-                
-                // Close expanded book cards
-                document.querySelectorAll('.book-card.expanded').forEach(card => {
-                    card.classList.remove('expanded');
-                    const arrow = card.querySelector('.expand-arrow');
-                    if (arrow) arrow.textContent = '▼';
-                });
-            }
-        });
-    }
-
-    // Initialize everything
-    setupEventListeners();
-    updateActiveLink();
-    updateScrollProgress();
+    document.addEventListener("keydown", e => {
+        if (e.key === "Escape") {
+            grid.querySelectorAll(".book-card.expanded").forEach(card => toggle(card));
+        }
+    });
 }
