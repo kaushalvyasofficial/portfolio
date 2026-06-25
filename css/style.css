@@ -895,7 +895,7 @@ img {
 /* ============ ACHIEVEMENTS ============ */
 .ach-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr));
     gap: 20px;
 }
 
@@ -1026,7 +1026,7 @@ img {
 /* ============ SKILLS ============ */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
     gap: 18px;
 }
 
@@ -1096,7 +1096,7 @@ img {
 
 .reading-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr));
     gap: 20px;
     align-items: start;
 }
